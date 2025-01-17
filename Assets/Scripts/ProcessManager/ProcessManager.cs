@@ -23,15 +23,16 @@ public class ProcessManager : MonoBehaviour
     }
     public void StartGame()
     {
-        
+        for (int i = 0; i < Data.students.Count; i++) { }
     }
     public void EndGame()
     {
         
     }
     public void GenerateBubble(BubbleScript bubbleScript) {
-        GameObject gameObject = Instantiate(BubblePrefab);
-        
+        Bubble bubble = Instantiate(BubblePrefab).GetComponent<Bubble>();
+        bubble.Init(bubbleScript,new Vector2(0,0));
+        //Data.students[bubbleScript.id];
         
     }
     public void AddScore(int score) { 

@@ -44,6 +44,8 @@ public class Bubble : MonoBehaviour
 
         transform.localScale = endScale;
         isMaxSize = true; // 标记气泡已达到最大
+        yield return new WaitForSeconds(0.5f);
+        isMaxSize = false;
     }
     private void OnMouseDown()
     {
@@ -65,7 +67,7 @@ public class Bubble : MonoBehaviour
         }
 
             // 销毁气泡
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
 
