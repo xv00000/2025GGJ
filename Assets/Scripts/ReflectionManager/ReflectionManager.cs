@@ -7,7 +7,6 @@ public class ReflectionManager : MonoBehaviour
 {
     public GameObject reflectTextPrefab;
     public static ReflectionManager Instance;
-    public float hitEffectTime = 0.5f;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -72,6 +71,6 @@ public class ReflectionManager : MonoBehaviour
         spriteRenderer.sprite = hitSprite;
 
         // 设置为0.5秒后销毁
-        Destroy(hitEffectObject, hitEffectTime);
+        Destroy(hitEffectObject, 0.5f);
     }
 }
