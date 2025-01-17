@@ -20,7 +20,7 @@ public class Bubble : MonoBehaviour
         this.sprite = bubbleScript.sprite;
         this.score = bubbleScript.score;
         // 设置气泡位置（允许偏移）
-        transform.position = offset;//(Vector2)Data.students[id].transform.position + 
+        transform.position = (Vector2)Data.students[bubbleScript.studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
 
         // 开始从小变大的动画
