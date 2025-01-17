@@ -9,12 +9,13 @@ public class Bubble : MonoBehaviour
 {
     [SerializeField]GameObject effect;
     GameObject self;
-    public int id;        // ÆøÅÝµÄ±àºÅ
-    public Sprite sprite; // ÆøÅÝµÄÍ¼Ïñ
-    public int score;     // ÆøÅÝµÄ·ÖÊý
+    public int id;        // ï¿½ï¿½ï¿½ÝµÄ±ï¿½ï¿½
+    public Sprite sprite; // ï¿½ï¿½ï¿½Ýµï¿½Í¼ï¿½ï¿½
+    public Sprite bubbleSprite;// ï¿½ï¿½ï¿½ÝµÄµï¿½Í¼
+    public int score;     // ï¿½ï¿½ï¿½ÝµÄ·ï¿½ï¿½ï¿½
     private bool isMaxSize = false;
     int studentId;
-    [SerializeField]SpriteRenderer spriteRenderer;// ÊÇ·ñ´ïµ½×î´ó³ß´ç
+    [SerializeField]SpriteRenderer spriteRenderer;// ï¿½Ç·ï¿½ïµ½ï¿½ï¿½ï¿½ß´ï¿½
     [SerializeField]BubbleScript script;
 
     public void Init(BubbleScript bubbleScript, Vector2 offset,int studentId)
@@ -22,23 +23,38 @@ public class Bubble : MonoBehaviour
         this.studentId = studentId;
         self = gameObject;
         script = bubbleScript;
-        // ÉèÖÃid¡¢SpriteºÍScore
+        // ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½Spriteï¿½ï¿½Score
         this.id = bubbleScript.id;
         this.sprite = bubbleScript.sprite;
         this.score = bubbleScript.score;
-        Debug.Log(Data.students[studentId].name);
-        // ÉèÖÃÆøÅÝÎ»ÖÃ£¨ÔÊÐíÆ«ÒÆ£©
+
+        // ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ýµï¿½Í¼
+        SpriteRenderer bubbleSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        switch (score)
+        {
+            case 100:
+                bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½.png");
+                break;
+            case 200:
+                bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½.png");
+                break;
+            default:
+                break;
+
+        }
+
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½Æ£ï¿½
         transform.position = (Vector2)Data.students[studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
         Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Distract);
         
-        // ¿ªÊ¼´ÓÐ¡±ä´óµÄ¶¯»­
+        // ï¿½ï¿½Ê¼ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
         StartCoroutine(PlayBubbleAnimation());
     }
 
     private IEnumerator PlayBubbleAnimation()
     {
-        float duration = 0.5f; // ¶¯»­³ÖÐøÊ±¼ä
+        float duration = 0.5f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
         float elapsedTime = 0f;
         Vector3 startScale = Vector3.zero;
         Vector3 endScale = Vector3.one;
@@ -52,7 +68,7 @@ public class Bubble : MonoBehaviour
         }
 
         transform.localScale = endScale;
-        isMaxSize = true; // ±ê¼ÇÆøÅÝÒÑ´ïµ½×î´ó
+        isMaxSize = true; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ïµ½ï¿½ï¿½ï¿½
         yield return new WaitForSeconds(0.5f);
         Tool.instance.DelayTime(() => { if (self) { Destroy(self); Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); } },3);
         isMaxSize = false;
@@ -61,18 +77,18 @@ public class Bubble : MonoBehaviour
     {
         if (isMaxSize)
         {
-            // ²¥·Å³É¹¦ÒôÐ§
-            AudioManager.instance.PlayEffect("Sounds/Effects/ÆøÅÝÆÆÁÑ");
-            // µ÷ÓÃ·ÖÊý¹ÜÀí
+            // ï¿½ï¿½ï¿½Å³É¹ï¿½ï¿½ï¿½Ð§
+            AudioManager.instance.PlayEffect("Sounds/Effects/ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+            // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             ProcessManager.instance.AddScore(score);
             Debug.Log(score);
         }
         else
         {
-            // ²¥·ÅÊ§°ÜÒôÐ§
-            AudioManager.instance.PlayEffect("Sounds/Effects/Ê§°ÜµÄÆøÅÝÆÆÁÑ");
+            // ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½Ð§
+            AudioManager.instance.PlayEffect("Sounds/Effects/Ê§ï¿½Üµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
-            // µ÷ÓÃ·ÖÊý¹ÜÀí
+            // ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             ProcessManager.instance.AddScore(score / 10);
             Debug.Log(score/10);
         }
@@ -81,107 +97,7 @@ public class Bubble : MonoBehaviour
         Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
         //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
         Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); },2);
-        // Ïú»ÙÆøÅÝ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         
     }
 }
-
-/*
- using System.Collections;
-using UnityEngine;
-
-public class Bubble : MonoBehaviour
-{
-    public int Id;        // ÆøÅÝµÄ±àºÅ
-    public Sprite Sprite; // ÆøÅÝµÄÍ¼Ïñ
-    public int Score;     // ÆøÅÝµÄ·ÖÊý
-    private bool isMaxSize = false; // ÊÇ·ñ´ïµ½×î´ó³ß´ç
-
-    public void Init(string assetPath, Vector2 offset)
-    {
-        // ´ÓÖ¸¶¨Â·¾¶¼ÓÔØ½Å±¾»¯¶ÔÏó
-        BubbleScript bubbleScript = Resources.Load<BubbleScript>(assetPath);
-        if (bubbleScript == null)
-        {
-            Debug.LogError($"Î´ÕÒµ½Â·¾¶Îª {assetPath} µÄBubbleScript£¡");
-            return;
-        }
-
-        // ÉèÖÃId¡¢SpriteºÍScore
-        this.Id = bubbleScript.Id;
-        this.Sprite = bubbleScript.Sprite;
-        this.Score = bubbleScript.Score;
-
-        // ²éÕÒÄ¿±êÎ»ÖÃµÄGameObject
-        GameObject targetGameObject = GameObject.Find(bubbleScript.Id.ToString());
-        if (targetGameObject == null)
-        {
-            Debug.LogError($"ÕÒ²»µ½±àºÅÎª {bubbleScript.Id} µÄGameObject£¡");
-            return;
-        }
-
-        // ÉèÖÃÆøÅÝÎ»ÖÃ£¨ÔÊÐíÆ«ÒÆ£©
-        transform.position = (Vector2)targetGameObject.transform.position + offset;
-
-        // ¼ÓÔØÆøÅÝÍ¼Æ¬
-        SpriteRenderer spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = Resources.Load<Sprite>("Images/ÁÙÊ±ÆøÅÝ");
-        if (spriteRenderer.sprite == null)
-        {
-            Debug.LogError("Î´ÕÒµ½Ö¸¶¨µÄÆøÅÝÍ¼Æ¬£¡");
-        }
-
-        // ÉèÖÃ×ÓÎïÌåÏÔÊ¾´«ÈëµÄSprite
-        GameObject innerBubble = new GameObject("InnerBubble");
-        innerBubble.transform.SetParent(transform);
-        innerBubble.transform.localPosition = Vector2.zero;
-
-        SpriteRenderer innerRenderer = innerBubble.AddComponent<SpriteRenderer>();
-        innerRenderer.sprite = this.Sprite;
-
-        // ¿ªÊ¼´ÓÐ¡±ä´óµÄ¶¯»­
-        StartCoroutine(PlayBubbleAnimation());
-    }
-
-    private IEnumerator PlayBubbleAnimation()
-    {
-        float duration = 0.5f; // ¶¯»­³ÖÐøÊ±¼ä
-        float elapsedTime = 0f;
-        Vector3 startScale = Vector3.zero;
-        Vector3 endScale = Vector3.one;
-
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            float progress = elapsedTime / duration;
-            transform.localScale = Vector3.Lerp(startScale, endScale, progress);
-            yield return null;
-        }
-
-        transform.localScale = endScale;
-        isMaxSize = true; // ±ê¼ÇÆøÅÝÒÑ´ïµ½×î´ó
-    }
-
-    private void OnMouseDown()
-    {
-        if (isMaxSize)
-        {
-            // ²¥·Å³É¹¦ÒôÐ§
-            AudioManager.instance.PlayEffect("Sounds/Effects/ÆøÅÝÆÆÁÑ");
-
-            // µ÷ÓÃ·ÖÊý¹ÜÀí
-            FeedbackManager.AddScore(Score);
-
-            // Ïú»ÙÆøÅÝ
-            Destroy(gameObject);
-        }
-        else
-        {
-            // ²¥·ÅÊ§°ÜÒôÐ§
-            AudioManager.instance.PlayEffect("Sounds/Effects/Ê§°ÜµÄÆøÅÝÆÆÁÑ");
-        }
-    }
-}
-
- 
- */
