@@ -7,14 +7,22 @@ public class ReflectionManager : MonoBehaviour
 {
     public GameObject reflectTextPrefab;
     public static ReflectionManager Instance;
+    private Sprite hitSprite;
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); // 确保单例的唯一性
+            Destroy(gameObject);
             return;
         }
         Instance = this;
+
+        // 预加载图片资源
+        hitSprite = Resources.Load<Sprite>("Images/教材打击");
+        if (hitSprite == null)
+        {
+            Debug.LogError("HitEffect: 图片 'Images/教材打击' 未找到！");
+        }
     }
 
     /// <summary>
@@ -30,8 +38,11 @@ public class ReflectionManager : MonoBehaviour
 
         if (textComponent != null)
         {
-            textComponent.text = reflectText;
+            textComponent.text = "+" + reflectText;
         }
+
+        Destroy(instance, 2.0f); // 2秒后销毁
+
     }
     /// <summary>
     /// 在指定位置显示反射文本，并指定颜色
@@ -46,6 +57,9 @@ public class ReflectionManager : MonoBehaviour
             textComponent.text = reflectText;
             textComponent.color = color;
         }
+
+        Destroy(instance, 2.0f); // 2秒后销毁
+
     }
 
     /// <summary>
@@ -55,7 +69,6 @@ public class ReflectionManager : MonoBehaviour
     public void HitEffect(Vector3 position)
     {
         // 加载图片资源
-        Sprite hitSprite = Resources.Load<Sprite>("Images/教材打击");
         if (hitSprite == null)
         {
             Debug.LogError("HitEffect: 图片 'Images/教材打击' 未找到！");
