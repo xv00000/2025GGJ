@@ -8,6 +8,7 @@ using UnityEngine;
 public class BubbleScript : ScriptableObject
 {
     public int id;
-    public float health;
+    public int score;
+    public Sprite sprite;
 
 }
