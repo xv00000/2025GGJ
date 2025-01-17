@@ -11,6 +11,7 @@ public class Bubble : MonoBehaviour
     GameObject self;
     public int id;        // 气泡的编号
     public Sprite sprite; // 气泡的图像
+    public Sprite bubbleSprite;// 气泡的底图
     public int score;     // 气泡的分数
     private bool isMaxSize = false;
     [SerializeField]SpriteRenderer spriteRenderer;// 是否达到最大尺寸
@@ -24,6 +25,22 @@ public class Bubble : MonoBehaviour
         this.id = bubbleScript.id;
         this.sprite = bubbleScript.sprite;
         this.score = bubbleScript.score;
+
+        // 根据分数修改气泡底图
+        SpriteRenderer bubbleSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        switch (score)
+        {
+            case 100:
+                bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/普通气泡.png");
+                break;
+            case 200:
+                bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/高级气泡.png");
+                break;
+            default:
+                break;
+
+        }
+
         // 设置气泡位置（允许偏移）
         transform.position = (Vector2)Data.students[bubbleScript.studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
