@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ReflectionManager : MonoBehaviour
 {
+    public GameObject hitEffectObject;
     public GameObject reflectTextPrefab;
     public static ReflectionManager Instance;
     public float hitEffectTime = 0.5f;
@@ -55,23 +56,11 @@ public class ReflectionManager : MonoBehaviour
     /// <param name="position">生成特效的位置</param>
     public void HitEffect(Vector3 position)
     {
-        // 加载图片资源
-        Sprite hitSprite = Resources.Load<Sprite>("Images/教材打击");
-        if (hitSprite == null)
-        {
-            Debug.LogError("HitEffect: 图片 'Images/教材打击' 未找到！");
-            return;
-        }
 
         // 创建新的GameObject用于显示图片
-        GameObject hitEffectObject = new GameObject("HitEffect");
-        hitEffectObject.transform.position = position;
-
-        // 添加SpriteRenderer组件
-        SpriteRenderer spriteRenderer = hitEffectObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.sprite = hitSprite;
+        GameObject temp = Instantiate(hitEffectObject, position, Quaternion.identity);
 
         // 设置为0.5秒后销毁
-        Destroy(hitEffectObject, hitEffectTime);
+        Destroy(temp, hitEffectTime);
     }
 }
