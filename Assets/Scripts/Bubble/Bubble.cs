@@ -7,6 +7,8 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class Bubble : MonoBehaviour
 {
+    [SerializeField]GameObject effect;
+    GameObject self;
     public int id;        // 气泡的编号
     public Sprite sprite; // 气泡的图像
     public int score;     // 气泡的分数
@@ -16,6 +18,7 @@ public class Bubble : MonoBehaviour
 
     public void Init(BubbleScript bubbleScript, Vector2 offset)
     {
+        self = gameObject;
         script = bubbleScript;
         // 设置id、Sprite和Score
         this.id = bubbleScript.id;
@@ -25,7 +28,7 @@ public class Bubble : MonoBehaviour
         transform.position = (Vector2)Data.students[bubbleScript.studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
         Data.students[bubbleScript.studentId].GetComponent<Student>().ChangeState(StudentState.Distract);
-
+        
         // 开始从小变大的动画
         StartCoroutine(PlayBubbleAnimation());
     }
@@ -48,6 +51,7 @@ public class Bubble : MonoBehaviour
         transform.localScale = endScale;
         isMaxSize = true; // 标记气泡已达到最大
         yield return new WaitForSeconds(0.5f);
+        Tool.instance.DelayTime(() => { if (self) { Destroy(self); } },3);
         isMaxSize = false;
     }
     private void OnMouseDown()
@@ -56,7 +60,6 @@ public class Bubble : MonoBehaviour
         {
             // 播放成功音效
             AudioManager.instance.PlayEffect("Sounds/Effects/气泡破裂");
-
             // 调用分数管理
             ProcessManager.instance.AddScore(score);
         }
@@ -68,6 +71,7 @@ public class Bubble : MonoBehaviour
             // 调用分数管理
             ProcessManager.instance.AddScore(score / 10);
         }
+        ReflectionManager.Instance.HitEffect(new Vector3(0, 0, 0));
         Data.studentScripts[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
         Tool.instance.DelayTime(() => { Data.studentScripts[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);Destroy(gameObject); },2);
         // 销毁气泡
