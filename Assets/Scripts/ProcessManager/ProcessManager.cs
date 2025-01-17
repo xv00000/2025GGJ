@@ -2,13 +2,12 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public static class Students { 
-    //public static List<>
-
-
-}
 public static class Data {
     public static int score;
+    public static List<GameObject> students = new List<GameObject>();
+    public static List<Sprite> faces = new List<Sprite>();
+    public static List<Sprite> hairs = new List<Sprite>();
+    public static List<Sprite> bodies = new List<Sprite>();
 
 
 }
