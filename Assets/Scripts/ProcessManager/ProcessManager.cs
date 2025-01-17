@@ -14,6 +14,9 @@ public static class Data {
 }
 public class ProcessManager : MonoBehaviour
 {
+    public List<GameObject> students = new List<GameObject>();
+    public List<StudentScript> studentScripts = new List<StudentScript>();
+    public List<BubbleScript> bubbleScripts = new List<BubbleScript>();
     [SerializeField] SpriteRenderer back;
     [SerializeField] List<Sprite> backGrounds;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -23,11 +26,15 @@ public class ProcessManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Data.students = students;
+        Data.studentScripts = studentScripts;
+        Data.bubbleScripts = bubbleScripts;
     }
     public void Initialize() { 
         int count = 0;
         Data.score = 0;
         back.sprite = backGrounds[Data.stage];
+        StartGame();
         TextAsset textAsset = Resources.Load<TextAsset>("bubbleGenerateTxt");//这里不要加文件扩展名
         if (textAsset != null)
         {
@@ -42,7 +49,10 @@ public class ProcessManager : MonoBehaviour
     }
     public void StartGame()
     {
-        for (int i = 0; i < Data.students.Count; i++) { }
+        for (int i = 0; i < students.Count; i++) {
+            Debug.Log(studentScripts[Random.Range(0, studentScripts.Count)]);
+            students[i].GetComponent<Student>().Init(studentScripts[Random.Range(0,studentScripts.Count)]);
+        }
     }
     public void EndGame()
     {

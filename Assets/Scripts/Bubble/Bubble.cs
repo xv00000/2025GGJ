@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -11,10 +12,11 @@ public class Bubble : MonoBehaviour
     public int score;     // 气泡的分数
     private bool isMaxSize = false;
     [SerializeField]SpriteRenderer spriteRenderer;// 是否达到最大尺寸
+    [SerializeField]BubbleScript script;
 
     public void Init(BubbleScript bubbleScript, Vector2 offset)
     {
-        
+        script = bubbleScript;
         // 设置id、Sprite和Score
         this.id = bubbleScript.id;
         this.sprite = bubbleScript.sprite;
@@ -22,6 +24,7 @@ public class Bubble : MonoBehaviour
         // 设置气泡位置（允许偏移）
         transform.position = (Vector2)Data.students[bubbleScript.studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
+        Data.students[bubbleScript.studentId].GetComponent<Student>().ChangeState(StudentState.Distract);
 
         // 开始从小变大的动画
         StartCoroutine(PlayBubbleAnimation());
@@ -65,9 +68,10 @@ public class Bubble : MonoBehaviour
             // 调用分数管理
             ProcessManager.instance.AddScore(score / 10);
         }
-
-            // 销毁气泡
-        Destroy(gameObject);
+        Data.studentScripts[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
+        Tool.instance.DelayTime(() => { Data.studentScripts[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);Destroy(gameObject); },2);
+        // 销毁气泡
+        
     }
 }
 

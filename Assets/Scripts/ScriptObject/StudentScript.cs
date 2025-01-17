@@ -8,6 +8,7 @@ using UnityEngine;
 public class StudentScript : ScriptableObject
 {
     public int id;
-    public float health;
-
+    public Sprite IdleSprite;
+    public Sprite AmazeSprite;
+    public Sprite DistractSprite;
 }
