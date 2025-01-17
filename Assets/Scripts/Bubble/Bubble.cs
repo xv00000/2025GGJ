@@ -13,21 +13,24 @@ public class Bubble : MonoBehaviour
     public Sprite sprite; // 气泡的图像
     public int score;     // 气泡的分数
     private bool isMaxSize = false;
+    int studentId;
     [SerializeField]SpriteRenderer spriteRenderer;// 是否达到最大尺寸
     [SerializeField]BubbleScript script;
 
-    public void Init(BubbleScript bubbleScript, Vector2 offset)
+    public void Init(BubbleScript bubbleScript, Vector2 offset,int studentId)
     {
+        this.studentId = studentId;
         self = gameObject;
         script = bubbleScript;
         // 设置id、Sprite和Score
         this.id = bubbleScript.id;
         this.sprite = bubbleScript.sprite;
         this.score = bubbleScript.score;
+        Debug.Log(Data.students[studentId].name);
         // 设置气泡位置（允许偏移）
-        transform.position = (Vector2)Data.students[bubbleScript.studentId].transform.position + offset;
+        transform.position = (Vector2)Data.students[studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
-        Data.students[bubbleScript.studentId].GetComponent<Student>().ChangeState(StudentState.Distract);
+        Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Distract);
         
         // 开始从小变大的动画
         StartCoroutine(PlayBubbleAnimation());
@@ -51,7 +54,7 @@ public class Bubble : MonoBehaviour
         transform.localScale = endScale;
         isMaxSize = true; // 标记气泡已达到最大
         yield return new WaitForSeconds(0.5f);
-        Tool.instance.DelayTime(() => { if (self) { Destroy(self); } },3);
+        Tool.instance.DelayTime(() => { if (self) { Destroy(self); Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); } },3);
         isMaxSize = false;
     }
     private void OnMouseDown()
@@ -62,6 +65,7 @@ public class Bubble : MonoBehaviour
             AudioManager.instance.PlayEffect("Sounds/Effects/气泡破裂");
             // 调用分数管理
             ProcessManager.instance.AddScore(score);
+            Debug.Log(score);
         }
         else
         {
@@ -70,10 +74,13 @@ public class Bubble : MonoBehaviour
 
             // 调用分数管理
             ProcessManager.instance.AddScore(score / 10);
+            Debug.Log(score/10);
         }
-        ReflectionManager.Instance.HitEffect(new Vector3(0, 0, 0));
-        Data.studentScripts[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
-        Tool.instance.DelayTime(() => { Data.studentScripts[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);Destroy(gameObject); },2);
+        ReflectionManager.Instance.HitEffect(transform.position);
+        Destroy(gameObject);
+        Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
+        //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
+        Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); },2);
         // 销毁气泡
         
     }

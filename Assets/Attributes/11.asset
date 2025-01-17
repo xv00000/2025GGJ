@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   IdleSprite: {fileID: 21300000, guid: 200eb5f357905e04e983a72d393325d1, type: 3}
-  AmazeSprite: {fileID: 21300000, guid: 894ec7d48363a354f9b0903b759afdb3, type: 3}
-  DistractSprite: {fileID: 21300000, guid: cb831030a34910b488fce71b0534e1fc, type: 3}
+  AmazeSprite: {fileID: 21300000, guid: cb831030a34910b488fce71b0534e1fc, type: 3}
+  DistractSprite: {fileID: 21300000, guid: 894ec7d48363a354f9b0903b759afdb3, type: 3}

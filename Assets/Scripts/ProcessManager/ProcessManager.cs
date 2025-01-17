@@ -50,7 +50,6 @@ public class ProcessManager : MonoBehaviour
     public void StartGame()
     {
         for (int i = 0; i < students.Count; i++) {
-            Debug.Log(studentScripts[Random.Range(0, studentScripts.Count)]);
             students[i].GetComponent<Student>().Init(studentScripts[Random.Range(0,studentScripts.Count)]);
         }
     }
@@ -58,16 +57,15 @@ public class ProcessManager : MonoBehaviour
     {
         Data.stage++;
     }
-    public void GenerateBubble(BubbleScript bubbleScript) {
+    public void GenerateBubble(BubbleScript bubbleScript,int studentId) {
         Bubble bubble = Instantiate(BubblePrefab).GetComponent<Bubble>();
-        bubble.Init(bubbleScript,new Vector2(0,0));
+        bubble.Init(bubbleScript,new Vector2(0.5f,0.5f),studentId);
         //Data.students[bubbleScript.id];
     }
     public BubbleScript FindBubble(int id) {
         for (int i = 0; i < Data.bubbleScripts.Count; i++) {
             if (id == Data.bubbleScripts[i].id) { 
                 return Data.bubbleScripts[i];
-            
             }
         
         }
@@ -81,6 +79,7 @@ public class ProcessManager : MonoBehaviour
     {
         //if (count == 1) { AudioManager.instance.PlayEffect(""); }   
         string line = lines[count];
+        //Debug.Log(line);
         count++;
         if (line[0] == 'f') { EndGame(); }
         else
@@ -89,8 +88,9 @@ public class ProcessManager : MonoBehaviour
             int studentId = (line[3] - 48) * 10 + line[4] - 48;
             string type = line[6].ToString() + line[7].ToString();
             float nextTime = (line[9] - 48) * 10 + line[10] - 48 + (line[11] - 48) * 0.1f;
+            Debug.Log(id + " "+studentId+" "+type +" "+nextTime);
             switch (type) {
-                case "01": GenerateBubble(FindBubble(id));break;       
+                case "01": GenerateBubble(FindBubble(id),studentId);break;       
             }
             
             yield return new WaitForSeconds(nextTime);

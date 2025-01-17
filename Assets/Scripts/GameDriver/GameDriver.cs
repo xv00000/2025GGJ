@@ -8,7 +8,7 @@ public class GameDriver : MonoBehaviour
     //public BubbleScript BubbleScript;
     void Start()
     {
-        ReflectionManager.Instance.HitEffect(new Vector3(0, 0, 0));
+        //ReflectionManager.Instance.HitEffect(new Vector3(0, 0, 0));
         ProcessManager.instance.Initialize();
 
         

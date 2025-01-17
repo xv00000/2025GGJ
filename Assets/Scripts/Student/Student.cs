@@ -19,6 +19,7 @@ public class Student : MonoBehaviour
     // ¹¹Ôìº¯Êý
     public void Init(StudentScript studentScript)
     {
+        this.studentScript = studentScript;
         spriteRenderer = GetComponent<SpriteRenderer>();    
         spriteRenderer.sprite = studentScript.IdleSprite;
         _currentState = StudentState.Idle;
