@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 3896723055
+    locked: 0
   - name: raw4
     uniqueID: 3359971799
     locked: 0
