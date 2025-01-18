@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7608541196308775983}
-  - component: {fileID: 7953035454952699761}
+  - component: {fileID: -649049430329147715}
   m_Layer: 0
   m_Name: MouseStyle
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7953035454952699761
+--- !u!114 &-649049430329147715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalCursor: {fileID: 2800000, guid: d6bc57eb12d24b04ab95785eefd2c3e3, type: 3}
   clickCursor: {fileID: 2800000, guid: c4f069e0804a5a049ac448394edf58c3, type: 3}
-  hotspot: {x: -0.25, y: 0.25}
+  hotspot: {x: 1, y: 1}

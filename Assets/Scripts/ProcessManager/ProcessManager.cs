@@ -36,6 +36,11 @@ public class ProcessManager : MonoBehaviour
     //[SerializeField] List<Sprite> BubbleSprites = new List<Sprite>();
     [SerializeField] GameObject BubblePrefab;
     public static ProcessManager instance;
+    private Coroutine scoreAnimationCoroutine;
+    private float maxScale = 1.5f; // 最大放大倍数
+    private float rotationAngle = 5f; // 最大右旋角度
+    private float animationDuration = 0.5f; // 动画持续时间
+
     private void Awake()
     {
         instance = this;
@@ -120,14 +125,64 @@ public class ProcessManager : MonoBehaviour
 
         }
     }
-    public void AddScore(int score) { 
+
+    public void AddScore(int score)
+    {
         Data.score += score;
-        scoreText.text = Data.stage+ "绩效："+Data.score;
-        if (Data.combo >= 1)
+        scoreText.text = Data.stage + "绩效：" + Data.score;
+
+        // 如果已经有动画进行中，先停止它
+        if (scoreAnimationCoroutine != null)
         {
-            //combo.text = "连击X"+Data.combo;
-            ReflectionManager.Instance.Reflect("连击X" + Data.combo, new Vector3(-8, 3, 0), Color.red);
+            StopCoroutine(scoreAnimationCoroutine);
         }
+
+        // 启动新的动画
+        scoreAnimationCoroutine = StartCoroutine(AnimateScoreText());
+    }
+    private IEnumerator AnimateScoreText()
+    {
+        float elapsedTime = 0f;
+
+        // 确保每次动画从初始状态开始
+        Vector3 originalScale = Vector3.one; // 假设初始缩放是 (1, 1, 1)
+        Quaternion originalRotation = Quaternion.identity; // 假设初始旋转是无旋转
+
+
+        // 放大和右旋阶段
+        while (elapsedTime < animationDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / animationDuration;
+
+            // 平滑放大和旋转
+            float scale = Mathf.Lerp(1f, maxScale, progress);
+            float angle = Mathf.Lerp(0f, rotationAngle, progress);
+
+            scoreText.transform.localScale = new Vector3(scale, scale, 1f);
+            scoreText.transform.rotation = Quaternion.Euler(0, 0, (UnityEngine.Random.Range(0, 2) * 2 - 1) * angle);
+
+            yield return null;
+        }
+
+        // 复位阶段
+        elapsedTime = 0f;
+        while (elapsedTime < animationDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / animationDuration;
+
+            // 平滑恢复到初始状态
+            scoreText.transform.localScale = Vector3.Lerp(scoreText.transform.localScale, originalScale, progress);
+            scoreText.transform.rotation = Quaternion.Lerp(scoreText.transform.rotation, originalRotation, progress);
+
+            yield return null;
+        }
+
+        // 确保完全复位
+        scoreText.transform.localScale = originalScale;
+        scoreText.transform.rotation = originalRotation;
+        scoreAnimationCoroutine = null; // 动画完成，清空协程引用
     }
     private IEnumerator Generatebu(string[] lines)
     {
