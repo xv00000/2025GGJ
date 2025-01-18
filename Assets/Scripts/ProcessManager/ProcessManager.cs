@@ -14,6 +14,9 @@ public static class Data {
 }
 public class ProcessManager : MonoBehaviour
 {
+    float aimFill;
+    int length;
+    int count;
     public List<GameObject> students = new List<GameObject>();
     public List<StudentScript> studentScripts = new List<StudentScript>();
     public List<BubbleScript> bubbleScripts = new List<BubbleScript>();
@@ -31,7 +34,7 @@ public class ProcessManager : MonoBehaviour
         Data.bubbleScripts = bubbleScripts;
     }
     public void Initialize() { 
-        int count = 0;
+        count = 0;
         Data.score = 0;
         back.sprite = backGrounds[Data.stage];
         StartGame();
@@ -61,6 +64,10 @@ public class ProcessManager : MonoBehaviour
         Bubble bubble = Instantiate(BubblePrefab).GetComponent<Bubble>();
         bubble.Init(bubbleScript,new Vector2(0.5f,0.5f),studentId);
         //Data.students[bubbleScript.id];
+    }
+    public float GetProcess() { 
+        return count/length;
+    
     }
     public BubbleScript FindBubble(int id) {
         for (int i = 0; i < Data.bubbleScripts.Count; i++) {
