@@ -71,7 +71,7 @@ public class ProcessManager : MonoBehaviour
         //Data.students[bubbleScript.id];
     }
     public float GetProcess() {
-        Debug.Log(count+" "+length);
+        //Debug.Log(count+" "+length);
         return count/length;
     }
     public BubbleScript FindBubble(int id) {
