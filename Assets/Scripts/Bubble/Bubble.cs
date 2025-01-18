@@ -69,7 +69,7 @@ public class Bubble : MonoBehaviour
 
         transform.localScale = endScale;
         isMaxSize = true; // ��������Ѵﵽ���
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         Tool.instance.DelayTime(() => { if (self) { Destroy(self); Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); } }, 3);
         isMaxSize = false;
         }
@@ -88,9 +88,9 @@ public class Bubble : MonoBehaviour
             {
             // ����ʧ����Ч
             AudioManager.instance.PlayEffect("气泡破裂");
-            ReflectionManager.Instance.Reflect((score / 10).ToString(), transform.position, Color.green);
+            ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
             // ���÷�������
-            ProcessManager.instance.AddScore(score / 10);
+            ProcessManager.instance.AddScore(score / 2);
             //Debug.Log(score/10);
             }
         Debug.Log("woc1");
@@ -110,7 +110,7 @@ public class Bubble : MonoBehaviour
                 {
                 // ���ųɹ���Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
-                ReflectionManager.Instance.Reflect("+" + (score).ToString(), transform.position, Color.green);
+                ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score);
                 Debug.Log(score);
@@ -119,9 +119,9 @@ public class Bubble : MonoBehaviour
                 {
                 // ����ʧ����Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
-                ReflectionManager.Instance.Reflect("+" + (score / 10).ToString(), transform.position, Color.green);
+                ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
                 // ���÷�������
-                ProcessManager.instance.AddScore(score / 10);
+                ProcessManager.instance.AddScore(score / 2);
                 Debug.Log(score / 10);
                 }
             Debug.Log("woc2");
