@@ -62,7 +62,7 @@ public class Bubble : MonoBehaviour
         float duration = 0.5f; // ��������ʱ��
         float elapsedTime = 0f;
         Vector3 startScale = Vector3.zero;
-        Vector3 endScale = Vector3.one;
+        Vector3 endScale = Vector3.one * 2.5f;//乘以倍数调整泡泡大小
         isMaxSize = true;
         while (elapsedTime < duration)
             {
