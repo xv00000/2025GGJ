@@ -74,6 +74,35 @@ public class DialogueManager : MonoBehaviour
     public void BeginStartDialogue() {
         diagpanel.SetActive(true);
         start = true;
+        if (startlines[startcnt][0] != 'f')
+        {
+            int id = startlines[startcnt][0] - '0';
+            string content = "";
+            for (int j = 2; j < startlines[startcnt].Length; j++)
+            {
+                if (startlines[startcnt][j] != '\n') content += startlines[startcnt][j];
+            }
+            string name = names[id];
+            Debug.Log(name + " " + content);
+            if (id == 1)
+            {
+                name1.text = name;
+                spriteRenderer1.gameObject.SetActive(true);
+                spriteRenderer2.gameObject.SetActive(false);
+                name2.text = "";
+                this.content.text = content;
+            }
+            else if (id == 0)
+            {
+                name1.text = "";
+                spriteRenderer2.gameObject.SetActive(true);
+                spriteRenderer1.gameObject.SetActive(false);
+                name2.text = name;
+                this.content.text = content;
+            }
+            startcnt++;
+        }
+        else { start = false; diagpanel.SetActive(false); ProcessManager.instance.Initialize(); Time.timeScale = 1; }
         //while (startlines[startcnt][0]!='f') {
         //    int id = startlines[startcnt][0] - '0';
         //    string content ="";
@@ -208,13 +237,77 @@ public class DialogueManager : MonoBehaviour
     public void BeginEnd1Dialogue() { 
         diagpanel.SetActive(true);
         end1 = true;
-    
-    
-    }public void BeginEnd2Dialogue() {
+        if (endlines[endcnt][0] != 'f')
+        {
+            int id = endlines[endcnt][0] - '0';
+            string content = "";
+            for (int j = 2; j < endlines[endcnt].Length; j++)
+            {
+                if (endlines[endcnt][j] != '\n') content += endlines[endcnt][j];
+            }
+            string name = names[id];
+            Debug.Log(name + " " + content);
+            if (id == 1)
+            {
+                name1.text = name;
+                spriteRenderer1.gameObject.SetActive(true);
+                spriteRenderer2.gameObject.SetActive(false);
+                name2.text = "";
+                this.content.text = content;
+            }
+            else if (id == 0)
+            {
+                name1.text = "";
+                spriteRenderer2.gameObject.SetActive(true);
+                spriteRenderer1.gameObject.SetActive(false);
+                name2.text = name;
+                this.content.text = content;
+            }
+            endcnt++;
+        }
+        else
+        {
+            end1 = false; diagpanel.SetActive(false); score.text = "¼¨Ð§£º" + Data.score.ToString(); endpanel.SetActive(true);
+        }
+
+
+    }
+    public void BeginEnd2Dialogue() {
         diagpanel.SetActive(true);
         end2 = true;
-    
-    
+        if (endlines1[endcnt1][0] != 'f')
+        {
+            int id = endlines1[endcnt1][0] - '0';
+            string content = "";
+            for (int j = 2; j < endlines1[endcnt1].Length; j++)
+            {
+                if (endlines1[endcnt1][j] != '\n') content += endlines1[endcnt1][j];
+            }
+            string name = names[id];
+            Debug.Log(name + " " + content);
+            if (id == 1)
+            {
+                name1.text = name;
+                spriteRenderer1.gameObject.SetActive(true);
+                spriteRenderer2.gameObject.SetActive(false);
+                name2.text = "";
+                this.content.text = content;
+            }
+            else if (id == 0)
+            {
+                name1.text = "";
+                spriteRenderer2.gameObject.SetActive(true);
+                spriteRenderer1.gameObject.SetActive(false);
+                name2.text = name;
+                this.content.text = content;
+            }
+            endcnt1++;
+        }
+        else
+        {
+            end2 = false; diagpanel.SetActive(false); score.text = "¼¨Ð§£º" + Data.score.ToString(); endpanel.SetActive(true);
+        }
+
     }
 
 }
