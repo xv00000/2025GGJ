@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public bool scoreTextIsActive;
     public bool menuIsActive;
 
-    public TextMeshPro ScoreText;
+    public TextMeshProUGUI ScoreText;
     public ProcessManager pm;
 
     void Update()

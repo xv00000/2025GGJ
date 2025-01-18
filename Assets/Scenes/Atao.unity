@@ -562,7 +562,8 @@ MonoBehaviour:
   - {fileID: 2020052637}
   - {fileID: 1332623583}
   studentScripts:
-  - {fileID: 11400000, guid: 78c9b4f8eb9de464d93ff79888675a27, type: 2}
+  - {fileID: 11400000, guid: d5cac3fac5aa3244fbb26c6a3f679bb2, type: 2}
+  - {fileID: 11400000, guid: a3cb5752a900e3544b15c1476ff5b9c6, type: 2}
   bubbleScripts:
   - {fileID: 11400000, guid: 22bc1cebf1ae4a04fb7a2b4a4f03be61, type: 2}
   scoreText: {fileID: 1538149817}
@@ -2102,7 +2103,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.61
+    OrthographicSize: 3
     NearClipPlane: -42.4
     FarClipPlane: 1000
     Dutch: 0
@@ -2477,7 +2478,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.61
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
