@@ -38,18 +38,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: BackGround
+    uniqueID: 3709931597
     locked: 0
-  - name: New Layer 1
-    uniqueID: 1348779185
+  - name: row4
+    uniqueID: 4057660413
     locked: 0
-  - name: New Layer 2
-    uniqueID: 285570765
-    locked: 0
-  - name: New Layer 3
+  - name: row3
     uniqueID: 2699169045
     locked: 0
-  - name: New Layer 4
-    uniqueID: 4057660413
+  - name: row2
+    uniqueID: 285570765
+    locked: 0
+  - name: row1
+    uniqueID: 1348779185
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
