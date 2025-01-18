@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: raw4
+    uniqueID: 3359971799
+    locked: 0
+  - name: raw3
+    uniqueID: 723104817
+    locked: 0
+  - name: raw2
+    uniqueID: 786028915
+    locked: 0
+  - name: raw1
+    uniqueID: 3313044003
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
