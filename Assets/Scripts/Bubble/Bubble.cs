@@ -93,6 +93,7 @@ public class Bubble : MonoBehaviour
             ProcessManager.instance.AddScore(score / 10);
             Debug.Log(score/10);
         }
+        Debug.Log("woc1");
         ReflectionManager.Instance.HitEffect(transform.position);
         Destroy(gameObject);
         Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
@@ -122,6 +123,7 @@ public class Bubble : MonoBehaviour
                 ProcessManager.instance.AddScore(score / 10);
                 Debug.Log(score / 10);
             }
+            Debug.Log("woc2");
             ReflectionManager.Instance.HitEffect(transform.position, 5.0f);
             Destroy(gameObject);
             Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);

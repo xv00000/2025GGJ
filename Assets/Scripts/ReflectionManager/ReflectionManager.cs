@@ -71,16 +71,18 @@ public class ReflectionManager : MonoBehaviour
     public void HitEffect(Vector3 position, float shakeIntensity = 2.0f)
     {
         GameObject temp = Instantiate(effectPrefab,position,Quaternion.identity);
-        Debug.Log("before impulse");
 
         // 触发 Cinemachine 屏幕抖动
         if (impulseSource != null)
         {
             // 根据输入的强度设置 Impulse 的振幅增益
-            Debug.Log("impulse");
             impulseSource.m_ImpulseDefinition.m_AmplitudeGain = shakeIntensity;
 
             impulseSource.GenerateImpulse();
+        }
+        else
+        {
+            Debug.LogWarning("No impulse source assigned!");
         }
 
         // 设置为0.5秒后销毁
