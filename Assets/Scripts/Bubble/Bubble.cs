@@ -122,7 +122,7 @@ public class Bubble : MonoBehaviour
                 ProcessManager.instance.AddScore(score / 10);
                 Debug.Log(score / 10);
             }
-            ReflectionManager.Instance.HitEffect(transform.position);
+            ReflectionManager.Instance.HitEffect(transform.position, 5.0f);
             Destroy(gameObject);
             Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,8 @@ public class ReflectionManager : MonoBehaviour
     public GameObject reflectTextPrefab;
     public GameObject effectPrefab;
     public static ReflectionManager Instance;
+    public CinemachineImpulseSource impulseSource; // 添加一个 CinemachineImpulseSource 的引用
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -17,6 +20,11 @@ public class ReflectionManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+        if (impulseSource == null)
+        {
+            Debug.LogWarning("CinemachineImpulseSource is not assigned in the inspector!");
+        }
     }
 
     /// <summary>
@@ -60,13 +68,25 @@ public class ReflectionManager : MonoBehaviour
     /// 在指定位置生成打击特效
     /// </summary>
     /// <param name="position">生成特效的位置</param>
-    public void HitEffect(Vector3 position)
+    public void HitEffect(Vector3 position, float shakeIntensity)
     {
         GameObject temp = Instantiate(effectPrefab,position,Quaternion.identity);
 
-       
+        // 触发 Cinemachine 屏幕抖动
+        if (impulseSource != null)
+        {
+            // 根据输入的强度设置 Impulse 的振幅增益
+            impulseSource.m_ImpulseDefinition.m_AmplitudeGain = shakeIntensity;
+
+            impulseSource.GenerateImpulse();
+        }
 
         // 设置为0.5秒后销毁
         Destroy(temp, 0.5f);
     }
+    public void HitEffect(Vector3 position)
+    {
+        HitEffect(position, 2.0f); // 默认抖动强度
+    }
+
 }
