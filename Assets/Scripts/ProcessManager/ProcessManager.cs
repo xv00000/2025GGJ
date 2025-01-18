@@ -75,7 +75,7 @@ public class ProcessManager : MonoBehaviour
     }
     public void GenerateBubble(BubbleScript bubbleScript,int studentId) {
         Bubble bubble = Instantiate(BubblePrefab).GetComponent<Bubble>();
-        bubble.Init(bubbleScript,new Vector2(0.5f,0.5f),studentId);
+        bubble.Init(bubbleScript,bubbleScript.offect,studentId);
         //Data.students[bubbleScript.id];
     }
     public float GetProcess() {

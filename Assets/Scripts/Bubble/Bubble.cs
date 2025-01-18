@@ -30,19 +30,19 @@ public class Bubble : MonoBehaviour
 
         // ���ݷ����޸����ݵ�ͼ
         SpriteRenderer bubbleSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        switch (score)
-        {
-            case 100:
-                bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/��ͨ����.png");
-                break;
-            case 200:
-                bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/�߼�����.png");
-                break;
-            default:
-                break;
+        //switch (score)
+        //{
+        //    case 100:
+        //        bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/��ͨ����.png");
+        //        break;
+        //    case 200:
+        //        bubbleSpriteRenderer.sprite = Resources.Load<Sprite>("Assets/Resources/Images/�߼�����.png");
+        //        break;
+        //    default:
+        //        break;
 
-        }
-
+        //}
+        bubbleSpriteRenderer.sprite = bubbleScript.sprite_bubble;
         // ��������λ�ã�����ƫ�ƣ�
         transform.position = (Vector2)Data.students[studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
