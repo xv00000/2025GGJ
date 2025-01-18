@@ -82,7 +82,7 @@ public class Bubble : MonoBehaviour
             ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
             // ���÷�������
             ProcessManager.instance.AddScore(score);
-            Debug.Log(score);
+            //Debug.Log(score);
         }
         else
         {
@@ -91,7 +91,7 @@ public class Bubble : MonoBehaviour
             ReflectionManager.Instance.Reflect((score / 10).ToString(), transform.position, Color.green);
             // ���÷�������
             ProcessManager.instance.AddScore(score / 10);
-            Debug.Log(score/10);
+            //Debug.Log(score/10);
         }
         Debug.Log("woc1");
         ReflectionManager.Instance.HitEffect(transform.position);
