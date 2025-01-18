@@ -63,7 +63,7 @@ public class Bubble : MonoBehaviour
         float elapsedTime = 0f;
         Vector3 startScale = Vector3.zero;
         Vector3 endScale = Vector3.one;
-
+        isMaxSize = true;
         while (elapsedTime < duration)
             {
             elapsedTime += Time.deltaTime;
@@ -73,7 +73,7 @@ public class Bubble : MonoBehaviour
             }
 
         transform.localScale = endScale;
-        isMaxSize = true; // ��������Ѵﵽ���
+
         yield return new WaitForSeconds(1f);
         Tool.instance.DelayTime(() => { if (self) { Destroy(self); Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); } }, 3);
         isMaxSize = false;
