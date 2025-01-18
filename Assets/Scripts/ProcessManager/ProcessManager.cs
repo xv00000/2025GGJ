@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mail;
 using TMPro;
 using Unity.Mathematics;
 using UnityEditor.SceneManagement;
@@ -11,6 +12,8 @@ using UnityEngine.UI;
 public static class Data {
     public static int stage = 1;
     public static int score = 0;
+    public static int normal = 0;
+    public static int dream = 0;
     public static List<GameObject> students = new List<GameObject>();
     public static List<StudentScript> studentScripts = new List<StudentScript>();
     public static List<BubbleScript> bubbleScripts = new List<BubbleScript>();
@@ -25,6 +28,7 @@ public class ProcessManager : MonoBehaviour
     public List<BubbleScript> bubbleScripts = new List<BubbleScript>();
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] Image processBar;
+    [SerializeField] GameObject processBarGam;
     [SerializeField] SpriteRenderer back;
     [SerializeField] List<Sprite> backGrounds;
     [SerializeField] GameObject PausePanel;
@@ -58,6 +62,7 @@ public class ProcessManager : MonoBehaviour
     }
     public void StartGame()
     {
+        processBarGam.SetActive(true);
         for (int i = 0; i < students.Count; i++) {
             students[i].GetComponent<Student>().Init(studentScripts[UnityEngine.Random.Range(0,studentScripts.Count)]);
         }
@@ -72,9 +77,15 @@ public class ProcessManager : MonoBehaviour
         //Data.students[bubbleScript.id];
     }
     public float GetProcess() {
-        if (count == length) { Tool.instance.DelayTime(() => { 
-            if (Data.score >= 20) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
-            else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
+        if (count == length) { Tool.instance.DelayTime(() => {
+            if (Data.stage != 7)
+            {
+                if (Data.score >= 20) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
+                else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
+            }
+            else {
+                SceneManager.LoadScene(3);
+            }
 
         }, 3); }
         //Debug.Log(count+" "+length);

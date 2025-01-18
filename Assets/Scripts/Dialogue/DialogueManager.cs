@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
+    public TextMeshProUGUI score;
     public GameObject endpanel;
     bool start = false;
     bool end1 = false;
@@ -166,7 +167,7 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                end1 = false; diagpanel.SetActive(false); endpanel.SetActive(true);
+                end1 = false; diagpanel.SetActive(false); score.text="¼¨Ð§£º"+Data.score.ToString(); endpanel.SetActive(true);
             }
         }
         if (end2 && Input.GetMouseButtonDown(0))
@@ -199,8 +200,8 @@ public class DialogueManager : MonoBehaviour
                 }
                 endcnt1++;
             }
-            else {end2 = false; diagpanel.SetActive(false);
-        }
+            else {end2 = false; diagpanel.SetActive(false); score.text = "¼¨Ð§£º" + Data.score.ToString(); endpanel.SetActive(true);
+            }
     }
     }
     public void BeginEnd1Dialogue() { 
