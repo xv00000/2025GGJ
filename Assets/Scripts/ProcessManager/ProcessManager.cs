@@ -5,10 +5,11 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 public static class Data {
-    public static int stage = 0;
+    public static int stage = 1;
     public static int score = 0;
     public static List<GameObject> students = new List<GameObject>();
     public static List<StudentScript> studentScripts = new List<StudentScript>();
@@ -17,7 +18,7 @@ public static class Data {
 public class ProcessManager : MonoBehaviour
 {
     float aimFill;
-    float length;
+    float length = 20;
     int count;
     public List<GameObject> students = new List<GameObject>();
     public List<StudentScript> studentScripts = new List<StudentScript>();
@@ -40,9 +41,9 @@ public class ProcessManager : MonoBehaviour
     public void Initialize() { 
         count = 0;
         Data.score = 0;
-        back.sprite = backGrounds[Data.stage];
+        back.sprite = backGrounds[Data.stage-1];
         StartGame();
-        TextAsset textAsset = Resources.Load<TextAsset>("bubbleGenerateTxt");//这里不要加文件扩展名
+        TextAsset textAsset = Resources.Load<TextAsset>("bubbleGenerateTxt"+Data.stage.ToString());//这里不要加文件扩展名
         if (textAsset != null)
         {
             string text = textAsset.text;
@@ -71,6 +72,11 @@ public class ProcessManager : MonoBehaviour
         //Data.students[bubbleScript.id];
     }
     public float GetProcess() {
+        if (count == length) { Tool.instance.DelayTime(() => { 
+            if (Data.score >= 20) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
+            else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
+
+        }, 3); }
         //Debug.Log(count+" "+length);
         return count/length;
     }
@@ -123,6 +129,10 @@ public class ProcessManager : MonoBehaviour
     }
     public void TimeNormal() { 
         Time.timeScale = 1.0f;
+    
+    }
+    public void nextStage() {
+        SceneManager.LoadScene(1);
     
     }
 }

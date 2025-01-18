@@ -8,9 +8,12 @@ using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager Instance;
+    public GameObject endpanel;
     bool start = false;
     bool end1 = false;
     bool end2 = false;
+    public GameObject diagpanel;
     public string[] startlines;
     int startcnt = 0, endcnt = 0,endcnt1=0;
     public string[] endlines;
@@ -23,9 +26,13 @@ public class DialogueManager : MonoBehaviour
     public Sprite Teacher;
     public Sprite Head;
     public List<string> names = new List<string>();
+    private void Awake()
+    {
+         Instance = this;
+    }
     private void Start()
     {
-        TextAsset textAsset = Resources.Load<TextAsset>("DiagStart");//这里不要加文件扩展名
+        TextAsset textAsset = Resources.Load<TextAsset>("DiagStart"+Data.stage);//这里不要加文件扩展名
         string text = "";
         if (textAsset != null)
         {
@@ -37,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         }
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(text);
         startlines = System.Text.Encoding.UTF8.GetString(bytes).Split('\n');
-        TextAsset textAsset1 = Resources.Load<TextAsset>("DiagStart");//这里不要加文件扩展名
+        TextAsset textAsset1 = Resources.Load<TextAsset>("DiagEnd1" + Data.stage);//这里不要加文件扩展名
         string text1 = "";
         if (textAsset1 != null)
         {
@@ -49,7 +56,7 @@ public class DialogueManager : MonoBehaviour
         }
         byte[] bytes1 = System.Text.Encoding.UTF8.GetBytes(text1);
         endlines = System.Text.Encoding.UTF8.GetString(bytes1).Split('\n');
-        TextAsset textAsset2 = Resources.Load<TextAsset>("DiagStart");//这里不要加文件扩展名
+        TextAsset textAsset2 = Resources.Load<TextAsset>("DiagEnd2" + Data.stage);//这里不要加文件扩展名
         string text2 = "";
         if (textAsset2 != null)
         {
@@ -64,6 +71,7 @@ public class DialogueManager : MonoBehaviour
     }
     
     public void BeginStartDialogue() {
+        diagpanel.SetActive(true);
         start = true;
         //while (startlines[startcnt][0]!='f') {
         //    int id = startlines[startcnt][0] - '0';
@@ -124,7 +132,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 startcnt++;
             }
-            else start = false;
+            else { start = false; diagpanel.SetActive(false); ProcessManager.instance.Initialize();Time.timeScale = 1; }
         }
         if (end1 && Input.GetMouseButtonDown(0))
         {
@@ -134,7 +142,7 @@ public class DialogueManager : MonoBehaviour
                 string content = "";
                 for (int j = 2; j < endlines[endcnt].Length; j++)
                 {
-                    if (endlines[startcnt][j] != '\n') content += endlines[endcnt][j];
+                    if (endlines[endcnt][j] != '\n') content += endlines[endcnt][j];
                 }
                 string name = names[id];
                 Debug.Log(name + " " + content);
@@ -156,7 +164,10 @@ public class DialogueManager : MonoBehaviour
                 }
                 endcnt++;
             }
-            else end1 = false;
+            else
+            {
+                end1 = false; diagpanel.SetActive(false); endpanel.SetActive(true);
+            }
         }
         if (end2 && Input.GetMouseButtonDown(0))
         {
@@ -188,14 +199,17 @@ public class DialogueManager : MonoBehaviour
                 }
                 endcnt1++;
             }
-            else end2 = false;
+            else {end2 = false; diagpanel.SetActive(false);
         }
     }
+    }
     public void BeginEnd1Dialogue() { 
+        diagpanel.SetActive(true);
         end1 = true;
     
     
-    }public void BeginEnd2Dialogue() { 
+    }public void BeginEnd2Dialogue() {
+        diagpanel.SetActive(true);
         end2 = true;
     
     
