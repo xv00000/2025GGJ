@@ -42,6 +42,9 @@ public class ProcessManager : MonoBehaviour
         Data.students = students;
         Data.studentScripts = studentScripts;
         Data.bubbleScripts = bubbleScripts;
+        for (int i = 0; i < students.Count; i++) {
+            students[i].GetComponent<Student>().Init(studentScripts[UnityEngine.Random.Range(0,studentScripts.Count)]);
+        }
     }
     public void Initialize() { 
         count = 0;
@@ -64,9 +67,7 @@ public class ProcessManager : MonoBehaviour
     public void StartGame()
     {
         processBarGam.SetActive(true);
-        for (int i = 0; i < students.Count; i++) {
-            students[i].GetComponent<Student>().Init(studentScripts[UnityEngine.Random.Range(0,studentScripts.Count)]);
-        }
+        
     }
     public void EndGame()
     {
