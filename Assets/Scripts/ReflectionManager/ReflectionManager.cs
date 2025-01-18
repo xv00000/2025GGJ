@@ -68,14 +68,16 @@ public class ReflectionManager : MonoBehaviour
     /// 在指定位置生成打击特效
     /// </summary>
     /// <param name="position">生成特效的位置</param>
-    public void HitEffect(Vector3 position, float shakeIntensity)
+    public void HitEffect(Vector3 position, float shakeIntensity = 2.0f)
     {
         GameObject temp = Instantiate(effectPrefab,position,Quaternion.identity);
+        Debug.Log("before impulse");
 
         // 触发 Cinemachine 屏幕抖动
         if (impulseSource != null)
         {
             // 根据输入的强度设置 Impulse 的振幅增益
+            Debug.Log("impulse");
             impulseSource.m_ImpulseDefinition.m_AmplitudeGain = shakeIntensity;
 
             impulseSource.GenerateImpulse();
@@ -83,10 +85,6 @@ public class ReflectionManager : MonoBehaviour
 
         // 设置为0.5秒后销毁
         Destroy(temp, 0.5f);
-    }
-    public void HitEffect(Vector3 position)
-    {
-        HitEffect(position, 2.0f); // 默认抖动强度
     }
 
 }
