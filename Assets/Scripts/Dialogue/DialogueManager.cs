@@ -204,6 +204,7 @@ public class DialogueManager : MonoBehaviour
             }
     }
     }
+    
     public void BeginEnd1Dialogue() { 
         diagpanel.SetActive(true);
         end1 = true;
