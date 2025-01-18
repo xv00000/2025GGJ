@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mail;
@@ -10,6 +11,7 @@ using UnityEngine.U2D;
 using UnityEngine.UI;
 public static class Data
     {
+    public static int ending = 2;
     public static int stage = 1;
     public static int score = 0;
     public static int normal = 0;
@@ -21,6 +23,9 @@ public static class Data
     }
 public class ProcessManager : MonoBehaviour
     {
+    float time = 0;
+    [SerializeField] bool randomGenerate;
+    [SerializeField] float interval;
     bool a = false;
     float aimFill;
     float length = 20;
@@ -105,6 +110,8 @@ public class ProcessManager : MonoBehaviour
                     }
                 else
                     {
+                    if ((float)Data.dream / (Data.dream + Data.normal) >= 0.3) Data.ending = 1;
+                    else Data.ending = 2;
                     SceneManager.LoadScene(2);
                     }
                 }
@@ -129,14 +136,18 @@ public class ProcessManager : MonoBehaviour
         }
     private void Update()
         {
+        time += Time.deltaTime;
         processBar.fillAmount = math.lerp(processBar.fillAmount, GetProcess(), Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Escape))
             {
             PausePanel.SetActive(true);
             Time.timeScale = 0f;
-
             }
+        if (randomGenerate && time>=interval) { time = 0;
+            GenerateBubble(FindBubble(UnityEngine.Random.Range(0,24)), UnityEngine.Random.Range(0,10));
         }
+        }
+
 
     public void AddScore(int score)
         {

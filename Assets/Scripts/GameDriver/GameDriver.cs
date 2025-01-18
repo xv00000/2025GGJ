@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public static class Skill {
-    public static bool _1 = true;
+    public static bool _1 = false;
 
 
 }

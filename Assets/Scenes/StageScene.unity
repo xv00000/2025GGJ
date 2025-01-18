@@ -592,6 +592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b020023f6fd22740a76671708f8ac72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomGenerate: 0
+  interval: 0.1
   students:
   - {fileID: 1604478264}
   - {fileID: 1445350194}

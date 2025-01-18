@@ -79,7 +79,9 @@ public class Bubble : MonoBehaviour
         isMaxSize = false;
         }
     private void OnMouseDown()
-        {
+    {
+        if (script.id >= 7) { Data.dream++; }
+        else { Data.normal++; }
         if (isMaxSize)
             {
             Data.combo += 1;
@@ -113,6 +115,8 @@ public class Bubble : MonoBehaviour
         {
         if (Skill._1)
             {
+            if (script.id >= 7) { Data.dream++; }
+            else { Data.normal++; }
             if (isMaxSize)
                 {
                 Data.combo += 1;
