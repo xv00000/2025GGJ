@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
     {
-    public
+    public bool scoreTextIsActive;
+    public bool menuIsActive;
 
+    public TextMeshPro ScoreText;
+    public ProcessManager pm;
 
-    // Start is called before the first frame update
-    void Start()
-        {
-
-        }
-
-    // Update is called once per frame
     void Update()
         {
+        if (pm != null) ScoreText.text = Data.score.ToString();//分数文本替换
+        else ScoreText.text = "Process对象没有获取到, 但是TMP获取到了";
+
+        //if (scoreTextIsActive == true) { ScoreText = }
+
 
         }
     }
