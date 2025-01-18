@@ -78,7 +78,7 @@ public class Bubble : MonoBehaviour
         if (isMaxSize)
         {
             // ���ųɹ���Ч
-            AudioManager.instance.PlayEffect("Sounds/Effects/��������");
+            AudioManager.instance.PlayEffect("气泡破裂");
             // ���÷�������
             ProcessManager.instance.AddScore(score);
             Debug.Log(score);
@@ -86,7 +86,7 @@ public class Bubble : MonoBehaviour
         else
         {
             // ����ʧ����Ч
-            AudioManager.instance.PlayEffect("Sounds/Effects/ʧ�ܵ���������");
+            AudioManager.instance.PlayEffect("气泡破裂");
 
             // ���÷�������
             ProcessManager.instance.AddScore(score / 10);
@@ -99,5 +99,34 @@ public class Bubble : MonoBehaviour
         Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); },2);
         // ��������
         
+    }
+    private void OnMouseOver()
+    {
+        if (Skill._1) {
+            if (isMaxSize)
+            {
+                // ���ųɹ���Ч
+                AudioManager.instance.PlayEffect("气泡破裂");
+                // ���÷�������
+                ProcessManager.instance.AddScore(score);
+                Debug.Log(score);
+            }
+            else
+            {
+                // ����ʧ����Ч
+                AudioManager.instance.PlayEffect("气泡破裂");
+
+                // ���÷�������
+                ProcessManager.instance.AddScore(score / 10);
+                Debug.Log(score / 10);
+            }
+            ReflectionManager.Instance.HitEffect(transform.position);
+            Destroy(gameObject);
+            Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
+            //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
+            Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); }, 2);
+
+
+        }
     }
 }
