@@ -80,7 +80,7 @@ public class Bubble : MonoBehaviour
         }
     private void OnMouseDown()
     {
-        if (script.id >= 7) { Data.dream++; }
+        if (script.id >= 6) { Data.dream++; }
         else { Data.normal++; }
         if (isMaxSize)
             {
