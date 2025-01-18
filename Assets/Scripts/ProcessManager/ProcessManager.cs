@@ -54,6 +54,7 @@ public class ProcessManager : MonoBehaviour
     public void Initialize() { 
         count = 0;
         Data.score = 0;
+        Data.combo = 0;
         back.sprite = backGrounds[0];
         StartGame();
         TextAsset textAsset = Resources.Load<TextAsset>("bubbleGenerate"+Data.stage.ToString());//这里不要加文件扩展名
@@ -130,9 +131,12 @@ public class ProcessManager : MonoBehaviour
     {
         Data.score += score;
         scoreText.text = Data.stage + "绩效：" + Data.score;
+        if (Data.combo >= 1) {
+            ReflectionManager.Instance.Reflect("连击X" + Data.combo, new Vector3(-8, 3, 0), Color.red);
 
-        // 如果已经有动画进行中，先停止它
-        if (scoreAnimationCoroutine != null)
+        }
+            // 如果已经有动画进行中，先停止它
+            if (scoreAnimationCoroutine != null)
         {
             StopCoroutine(scoreAnimationCoroutine);
         }
