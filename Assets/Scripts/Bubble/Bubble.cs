@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+public static class Texture {
+    public static Texture2D normalCursor; // 常态鼠标样式
+    public static Texture2D clickCursor;
 
+}
 public class Bubble : MonoBehaviour
     {
     [SerializeField] GameObject effect;
@@ -77,6 +81,7 @@ public class Bubble : MonoBehaviour
         {
         if (isMaxSize)
             {
+            Data.combo += 1;
             // ���ųɹ���Ч
             AudioManager.instance.PlayEffect("气泡破裂");
             ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
@@ -86,6 +91,7 @@ public class Bubble : MonoBehaviour
             }
         else
             {
+            Data.combo = 0;
             // ����ʧ����Ч
             AudioManager.instance.PlayEffect("气泡破裂");
             ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
@@ -105,32 +111,35 @@ public class Bubble : MonoBehaviour
     private void OnMouseOver()
         {
         if (Skill._1)
-            {
+        {
             if (isMaxSize)
-                {
+            {
+                Data.combo += 1;
                 // ���ųɹ���Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
                 ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score);
                 Debug.Log(score);
-                }
+            }
             else
-                {
+            {
+                Data.combo = 0;
                 // ����ʧ����Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
                 ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score / 2);
                 Debug.Log(score / 10);
-                }
+            }
+            Cursor.SetCursor(Texture.clickCursor, new Vector2(-0.35f, 0.25f), CursorMode.Auto);
             Debug.Log("woc2");
             ReflectionManager.Instance.HitEffect(transform.position, 2.0f);//后面的浮点数是震动强度
             Destroy(gameObject);
             Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); }, 2);
-
+            Tool.instance.DelayTime(() => { Cursor.SetCursor(Texture.normalCursor, new Vector2(-0.35f, 0.25f), CursorMode.Auto); },0.2f);
 
             }
         }

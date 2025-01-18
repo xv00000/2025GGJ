@@ -13,6 +13,7 @@ public static class Data {
     public static int score = 0;
     public static int normal = 0;
     public static int dream = 0;
+    public static int combo = 0;
     public static List<GameObject> students = new List<GameObject>();
     public static List<StudentScript> studentScripts = new List<StudentScript>();
     public static List<BubbleScript> bubbleScripts = new List<BubbleScript>();
@@ -122,7 +123,11 @@ public class ProcessManager : MonoBehaviour
     public void AddScore(int score) { 
         Data.score += score;
         scoreText.text = Data.stage+ "¼¨Ð§£º"+Data.score;
-
+        if (Data.combo >= 1)
+        {
+            //combo.text = "Á¬»÷X"+Data.combo;
+            ReflectionManager.Instance.Reflect("Á¬»÷X" + Data.combo, new Vector3(-8, 3, 0), Color.red);
+        }
     }
     private IEnumerator Generatebu(string[] lines)
     {

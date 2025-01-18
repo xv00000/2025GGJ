@@ -3,7 +3,14 @@ guid: 4344b73cfd36b4a43b544e7e314a6654
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - normalCursor: {fileID: 2800000, guid: d6bc57eb12d24b04ab95785eefd2c3e3, type: 3}
+  - clickCursor: {fileID: 2800000, guid: c4f069e0804a5a049ac448394edf58c3, type: 3}
+  - effect: {instanceID: 0}
+  - sprite: {instanceID: 0}
+  - bubbleSprite: {instanceID: 0}
+  - spriteRenderer: {instanceID: 0}
+  - script: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
