@@ -54,6 +54,7 @@ public class ProcessManager : MonoBehaviour
     public void Initialize() { 
         count = 0;
         Data.score = 0;
+        Data.combo = 0;
         back.sprite = backGrounds[0];
         StartGame();
         TextAsset textAsset = Resources.Load<TextAsset>("bubbleGenerate"+Data.stage.ToString());//这里不要加文件扩展名
