@@ -6,8 +6,8 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class Bubble : MonoBehaviour
-{
-    [SerializeField]GameObject effect;
+    {
+    [SerializeField] GameObject effect;
     GameObject self;
     public int id;        // ���ݵı��
     public Sprite sprite; // ���ݵ�ͼ��
@@ -15,11 +15,11 @@ public class Bubble : MonoBehaviour
     public int score;     // ���ݵķ���
     private bool isMaxSize = false;
     int studentId;
-    [SerializeField]SpriteRenderer spriteRenderer;// �Ƿ�ﵽ���ߴ�
-    [SerializeField]BubbleScript script;
+    [SerializeField] SpriteRenderer spriteRenderer;// �Ƿ�ﵽ���ߴ�
+    [SerializeField] BubbleScript script;
 
-    public void Init(BubbleScript bubbleScript, Vector2 offset,int studentId)
-    {
+    public void Init(BubbleScript bubbleScript, Vector2 offset, int studentId)
+        {
         this.studentId = studentId;
         self = gameObject;
         script = bubbleScript;
@@ -47,90 +47,91 @@ public class Bubble : MonoBehaviour
         transform.position = (Vector2)Data.students[studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
         Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Distract);
-        
+
         // ��ʼ��С���Ķ���
         StartCoroutine(PlayBubbleAnimation());
-    }
+        }
 
     private IEnumerator PlayBubbleAnimation()
-    {
+        {
         float duration = 0.5f; // ��������ʱ��
         float elapsedTime = 0f;
         Vector3 startScale = Vector3.zero;
         Vector3 endScale = Vector3.one;
 
         while (elapsedTime < duration)
-        {
+            {
             elapsedTime += Time.deltaTime;
             float progress = elapsedTime / duration;
             transform.localScale = Vector3.Lerp(startScale, endScale, progress);
             yield return null;
-        }
+            }
 
         transform.localScale = endScale;
         isMaxSize = true; // ��������Ѵﵽ���
         yield return new WaitForSeconds(0.5f);
-        Tool.instance.DelayTime(() => { if (self) { Destroy(self); Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); } },3);
+        Tool.instance.DelayTime(() => { if (self) { Destroy(self); Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); } }, 3);
         isMaxSize = false;
-    }
+        }
     private void OnMouseDown()
-    {
-        if (isMaxSize)
         {
+        if (isMaxSize)
+            {
             // ���ųɹ���Ч
             AudioManager.instance.PlayEffect("气泡破裂");
             ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
             // ���÷�������
             ProcessManager.instance.AddScore(score);
             //Debug.Log(score);
-        }
+            }
         else
-        {
+            {
             // ����ʧ����Ч
             AudioManager.instance.PlayEffect("气泡破裂");
             ReflectionManager.Instance.Reflect((score / 10).ToString(), transform.position, Color.green);
             // ���÷�������
             ProcessManager.instance.AddScore(score / 10);
             //Debug.Log(score/10);
-        }
+            }
         Debug.Log("woc1");
-        ReflectionManager.Instance.HitEffect(transform.position);
+        ReflectionManager.Instance.HitEffect(transform.position, 1.0f);//后面的浮点数是震动强度
         Destroy(gameObject);
         Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
         //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
-        Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); },2);
+        Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); }, 2);
         // ��������
-        
-    }
+
+        }
     private void OnMouseOver()
-    {
-        if (Skill._1) {
-            if (isMaxSize)
+        {
+        if (Skill._1)
             {
+            if (isMaxSize)
+                {
                 // ���ųɹ���Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
-                ReflectionManager.Instance.Reflect("+"+(score).ToString(), transform.position, Color.green);
+                ReflectionManager.Instance.Reflect("+" + (score).ToString(), transform.position, Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score);
                 Debug.Log(score);
-            }
+                }
             else
-            {
+                {
                 // ����ʧ����Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
-                ReflectionManager.Instance.Reflect("+"+(score/10).ToString(),transform.position,Color.green);
+                ReflectionManager.Instance.Reflect("+" + (score / 10).ToString(), transform.position, Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score / 10);
                 Debug.Log(score / 10);
-            }
+                }
             Debug.Log("woc2");
-            ReflectionManager.Instance.HitEffect(transform.position, 5.0f);
+            ReflectionManager.Instance.HitEffect(transform.position, 2.0f);//后面的浮点数是震动强度
             Destroy(gameObject);
             Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); }, 2);
 
 
+            }
         }
     }
-}
