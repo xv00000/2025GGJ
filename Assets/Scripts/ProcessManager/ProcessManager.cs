@@ -105,7 +105,7 @@ public class ProcessManager : MonoBehaviour
                 a = true;
                 if (Data.stage != 8)
                     {
-                    if (Data.score >= 70 + 15 * (Data.stage - 1)) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
+                    if (Data.score >= 30 + 45 * (Data.stage - 1)) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
                     else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
                     }
                 else
@@ -152,7 +152,7 @@ public class ProcessManager : MonoBehaviour
     public void AddScore(int score)
         {
         Data.score += score;
-        scoreText.text = Data.stage + "¼¨Ð§£º" + Data.score;
+        scoreText.text =  "¼¨Ð§£º" + Data.score;//Data.stage +
         if (Data.combo >= 1)
             {
             ReflectionManager.Instance.Reflect("Á¬»÷X" + Data.combo, new Vector3(-8, 3, 0), Color.red);
