@@ -45,9 +45,9 @@ public class ProcessManager : MonoBehaviour
     public void Initialize() { 
         count = 0;
         Data.score = 0;
-        back.sprite = backGrounds[Data.stage-1];
+        back.sprite = backGrounds[0];
         StartGame();
-        TextAsset textAsset = Resources.Load<TextAsset>("bubbleGenerateTxt"+Data.stage.ToString());//这里不要加文件扩展名
+        TextAsset textAsset = Resources.Load<TextAsset>("bubbleGenerate"+Data.stage.ToString());//这里不要加文件扩展名
         if (textAsset != null)
         {
             string text = textAsset.text;
@@ -84,7 +84,7 @@ public class ProcessManager : MonoBehaviour
                 else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
             }
             else {
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(2);
             }
 
         }, 3); }
@@ -129,7 +129,7 @@ public class ProcessManager : MonoBehaviour
             int studentId = (line[3] - 48) * 10 + line[4] - 48;
             string type = line[6].ToString() + line[7].ToString();
             float nextTime = (line[9] - 48) * 10 + line[10] - 48 + (line[11] - 48) * 0.1f;
-            //Debug.Log(id + " "+studentId+" "+type +" "+nextTime);
+            Debug.Log(id + " "+studentId+" "+type +" "+nextTime);
             switch (type) {
                 case "01": GenerateBubble(FindBubble(id),studentId);break;       
             }
