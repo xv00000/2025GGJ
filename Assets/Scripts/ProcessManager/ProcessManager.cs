@@ -129,7 +129,7 @@ public class ProcessManager : MonoBehaviour
             int studentId = (line[3] - 48) * 10 + line[4] - 48;
             string type = line[6].ToString() + line[7].ToString();
             float nextTime = (line[9] - 48) * 10 + line[10] - 48 + (line[11] - 48) * 0.1f;
-            //Debug.Log(id + " "+studentId+" "+type +" "+nextTime);
+            Debug.Log(id + " "+studentId+" "+type +" "+nextTime);
             switch (type) {
                 case "01": GenerateBubble(FindBubble(id),studentId);break;       
             }
