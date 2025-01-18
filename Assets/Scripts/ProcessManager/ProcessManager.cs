@@ -2,9 +2,11 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.UI;
 public static class Data {
     public static int stage = 0;
     public static int score = 0;
@@ -15,14 +17,16 @@ public static class Data {
 public class ProcessManager : MonoBehaviour
 {
     float aimFill;
-    int length;
+    float length;
     int count;
     public List<GameObject> students = new List<GameObject>();
     public List<StudentScript> studentScripts = new List<StudentScript>();
     public List<BubbleScript> bubbleScripts = new List<BubbleScript>();
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] Image processBar;
     [SerializeField] SpriteRenderer back;
     [SerializeField] List<Sprite> backGrounds;
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] GameObject PausePanel;
     //[SerializeField] List<Sprite> BubbleSprites = new List<Sprite>();
     [SerializeField] GameObject BubblePrefab;
     public static ProcessManager instance;
@@ -48,12 +52,13 @@ public class ProcessManager : MonoBehaviour
             Debug.LogError("Text file not found in Resources!");
         }
         string[] lines = textAsset.text.Split('\n');
-        StartCoroutine(Generatebu(count, lines));
+        length = lines.Length;
+        StartCoroutine(Generatebu(lines));
     }
     public void StartGame()
     {
         for (int i = 0; i < students.Count; i++) {
-            students[i].GetComponent<Student>().Init(studentScripts[Random.Range(0,studentScripts.Count)]);
+            students[i].GetComponent<Student>().Init(studentScripts[UnityEngine.Random.Range(0,studentScripts.Count)]);
         }
     }
     public void EndGame()
@@ -65,9 +70,9 @@ public class ProcessManager : MonoBehaviour
         bubble.Init(bubbleScript,new Vector2(0.5f,0.5f),studentId);
         //Data.students[bubbleScript.id];
     }
-    public float GetProcess() { 
+    public float GetProcess() {
+        Debug.Log(count+" "+length);
         return count/length;
-    
     }
     public BubbleScript FindBubble(int id) {
         for (int i = 0; i < Data.bubbleScripts.Count; i++) {
@@ -79,10 +84,22 @@ public class ProcessManager : MonoBehaviour
         return null;
     
     }
+    private void Update()
+    {
+        processBar.fillAmount = math.lerp(processBar.fillAmount,GetProcess(),Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PausePanel.SetActive(true);
+            Time.timeScale = 0f;
+
+        }
+    }
     public void AddScore(int score) { 
         Data.score += score;
+        scoreText.text = "¼¨Ð§£º"+Data.score;
+
     }
-    private IEnumerator Generatebu(int count, string[] lines)
+    private IEnumerator Generatebu(string[] lines)
     {
         //if (count == 1) { AudioManager.instance.PlayEffect(""); }   
         string line = lines[count];
@@ -95,13 +112,17 @@ public class ProcessManager : MonoBehaviour
             int studentId = (line[3] - 48) * 10 + line[4] - 48;
             string type = line[6].ToString() + line[7].ToString();
             float nextTime = (line[9] - 48) * 10 + line[10] - 48 + (line[11] - 48) * 0.1f;
-            Debug.Log(id + " "+studentId+" "+type +" "+nextTime);
+            //Debug.Log(id + " "+studentId+" "+type +" "+nextTime);
             switch (type) {
                 case "01": GenerateBubble(FindBubble(id),studentId);break;       
             }
             
             yield return new WaitForSeconds(nextTime);
         }
-        if (count < lines.Length) StartCoroutine(Generatebu(count, lines));
+        if (count < lines.Length) StartCoroutine(Generatebu(lines));
+    }
+    public void TimeNormal() { 
+        Time.timeScale = 1.0f;
+    
     }
 }
