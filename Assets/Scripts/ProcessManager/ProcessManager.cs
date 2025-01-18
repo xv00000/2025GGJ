@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Net.Mail;
 using TMPro;
 using Unity.Mathematics;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 public static class Data {
-    public static int stage = 2;
+    public static int stage = 1;
     public static int score = 0;
     public static int normal = 0;
     public static int dream = 0;
@@ -85,9 +84,9 @@ public class ProcessManager : MonoBehaviour
             if (!a)
             {
                 a = true;
-                if (Data.stage != 7)
+                if (Data.stage != 8)
                 {
-                    if (Data.score >= 200) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
+                    if (Data.score >= 70+15*(Data.stage-1)) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
                     else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
                 }
                 else
@@ -154,5 +153,9 @@ public class ProcessManager : MonoBehaviour
     public void nextStage() {
         SceneManager.LoadScene(1);
     
+    }
+    public void quit() { 
+    
+        Application.Quit();
     }
 }
