@@ -20,6 +20,7 @@ public static class Data {
 }
 public class ProcessManager : MonoBehaviour
 {
+    bool a = false;
     float aimFill;
     float length = 20;
     int count;
@@ -77,14 +78,20 @@ public class ProcessManager : MonoBehaviour
         //Data.students[bubbleScript.id];
     }
     public float GetProcess() {
-        if (count == length) { Tool.instance.DelayTime(() => {
-            if (Data.stage != 7)
+        if (count == length) { Tool.instance.DelayTime(() =>
+        {
+            if (!a)
             {
-                if (Data.score >= 20) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
-                else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
-            }
-            else {
-                SceneManager.LoadScene(2);
+                a = true;
+                if (Data.stage != 7)
+                {
+                    if (Data.score >= 200) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
+                    else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
+                }
+                else
+                {
+                    SceneManager.LoadScene(2);
+                }
             }
 
         }, 3); }
@@ -113,7 +120,7 @@ public class ProcessManager : MonoBehaviour
     }
     public void AddScore(int score) { 
         Data.score += score;
-        scoreText.text = "¼¨Ð§£º"+Data.score;
+        scoreText.text = Data.stage+ "¼¨Ð§£º"+Data.score;
 
     }
     private IEnumerator Generatebu(string[] lines)
