@@ -538,16 +538,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1acd84e3a86b77a40b3f3fee2bd2da21, type: 2}
   - {fileID: 11400000, guid: 27102c255cc34b64185c202abc3e500c, type: 2}
   bubbleScripts:
-  - {fileID: 11400000, guid: 22bc1cebf1ae4a04fb7a2b4a4f03be61, type: 2}
-  - {fileID: 11400000, guid: 0270970e4894e98409435f5226122e04, type: 2}
-  - {fileID: 11400000, guid: 3c59d5eff427ec744b6ed507f2c5770e, type: 2}
-  - {fileID: 11400000, guid: 7c85c07c5e7b25c4598ec8c3e8d20d5f, type: 2}
-  - {fileID: 11400000, guid: 0619b99247dbdf44bbfde1758b770c85, type: 2}
-  - {fileID: 11400000, guid: eed01350d72c7b945a477f129d1a8281, type: 2}
-  - {fileID: 11400000, guid: 75f350fb76d704243a1925a4b6764b2d, type: 2}
-  - {fileID: 11400000, guid: 4f5fb3864c79c63409d706962a09ba7a, type: 2}
-  - {fileID: 11400000, guid: 8dd0eb6a3b4f4804c938b3ddafb7a653, type: 2}
-  - {fileID: 11400000, guid: 2340a65319efd6b478a3edb28ad769da, type: 2}
+  - {fileID: 11400000, guid: 9eba65effa789fa41bba4fd7e10b74d2, type: 2}
+  - {fileID: 11400000, guid: eb3cf7c496102e940907481e59758497, type: 2}
+  - {fileID: 11400000, guid: 23830183b78588c43ad686a432ec9358, type: 2}
+  - {fileID: 11400000, guid: 5a40b5539b1644b42ad9880667a3d1f3, type: 2}
+  - {fileID: 11400000, guid: 836d6cc290a6af041a9cad6fce320ca3, type: 2}
+  - {fileID: 11400000, guid: 31648a5dd2403fd479501679d02e4242, type: 2}
+  - {fileID: 11400000, guid: 1396cfb8977665c429e7975c811e215a, type: 2}
+  - {fileID: 11400000, guid: a25c3999e277daf4696abe14d2879881, type: 2}
+  - {fileID: 11400000, guid: b8d1a0c21cc7e9a418e4c734478c9f8e, type: 2}
+  - {fileID: 11400000, guid: e815787b03e68444a8b1e3be1f02e861, type: 2}
   scoreText: {fileID: 1538149817}
   processBar: {fileID: 590933278}
   processBarGam: {fileID: 1315895526}
