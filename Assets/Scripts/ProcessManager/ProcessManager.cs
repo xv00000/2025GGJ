@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.UI;
 public static class Data {
-    public static int stage = 1;
+    public static int stage = 2;
     public static int score = 0;
     public static int normal = 0;
     public static int dream = 0;
@@ -67,6 +67,7 @@ public class ProcessManager : MonoBehaviour
     public void StartGame()
     {
         processBarGam.SetActive(true);
+        AudioManager.instance.PlayBGM("¹Ø¿¨"+Data.stage);
         
     }
     public void EndGame()
