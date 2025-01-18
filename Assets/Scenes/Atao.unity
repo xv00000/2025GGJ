@@ -740,8 +740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35606c9345a778d40822d05edfdb25e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reflectTextPrefab: {fileID: 0}
-  effectPrefab: {fileID: 0}
+  reflectTextPrefab: {fileID: 2153221490634811907, guid: 2b4cf9bc73a30fa449962b2db1e3c31f, type: 3}
+  effectPrefab: {fileID: 6279588231366384025, guid: 3e6adccae36d18a4587509ad1b22d4fd, type: 3}
 --- !u!4 &440796852
 Transform:
   m_ObjectHideFlags: 0
@@ -2593,7 +2593,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 211d7f787b390014dbca49ead5e66148, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

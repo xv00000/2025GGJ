@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,7 @@ public class ReflectionManager : MonoBehaviour
         mousePosition.z = 0; // 确保 Z 坐标正确
 
         GameObject instance = Instantiate(reflectTextPrefab, mousePosition, Quaternion.identity);
-        Text textComponent = instance.GetComponentInChildren<Text>();
+        TextMeshPro textComponent = instance.GetComponentInChildren<TextMeshPro>();
 
         if (textComponent != null)
         {
@@ -43,7 +44,7 @@ public class ReflectionManager : MonoBehaviour
     public void Reflect(string reflectText, Vector3 position, Color color)
     {
         GameObject instance = Instantiate(reflectTextPrefab, position, Quaternion.identity);
-        Text textComponent = instance.GetComponentInChildren<Text>();
+        TextMeshPro textComponent = instance.GetComponentInChildren<TextMeshPro>();
 
         if (textComponent != null)
         {
@@ -61,7 +62,7 @@ public class ReflectionManager : MonoBehaviour
     /// <param name="position">生成特效的位置</param>
     public void HitEffect(Vector3 position)
     {
-        GameObject temp = Instantiate(gameObject,position,Quaternion.identity);
+        GameObject temp = Instantiate(effectPrefab,position,Quaternion.identity);
 
        
 

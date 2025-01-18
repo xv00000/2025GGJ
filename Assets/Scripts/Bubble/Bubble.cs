@@ -79,6 +79,7 @@ public class Bubble : MonoBehaviour
         {
             // ���ųɹ���Ч
             AudioManager.instance.PlayEffect("气泡破裂");
+            ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
             // ���÷�������
             ProcessManager.instance.AddScore(score);
             Debug.Log(score);
@@ -87,7 +88,7 @@ public class Bubble : MonoBehaviour
         {
             // ����ʧ����Ч
             AudioManager.instance.PlayEffect("气泡破裂");
-
+            ReflectionManager.Instance.Reflect((score / 10).ToString(), transform.position, Color.green);
             // ���÷�������
             ProcessManager.instance.AddScore(score / 10);
             Debug.Log(score/10);
@@ -107,6 +108,7 @@ public class Bubble : MonoBehaviour
             {
                 // ���ųɹ���Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
+                ReflectionManager.Instance.Reflect("+"+(score).ToString(), transform.position, Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score);
                 Debug.Log(score);
@@ -115,7 +117,7 @@ public class Bubble : MonoBehaviour
             {
                 // ����ʧ����Ч
                 AudioManager.instance.PlayEffect("气泡破裂");
-
+                ReflectionManager.Instance.Reflect("+"+(score/10).ToString(),transform.position,Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score / 10);
                 Debug.Log(score / 10);
