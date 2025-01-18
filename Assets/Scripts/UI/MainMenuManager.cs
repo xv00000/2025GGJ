@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,12 @@ public class MainMenuManager : MonoBehaviour
     public void ExitGame()
         {
         Application.Quit();
+        }
+
+    public void StageSelect(int stage_id)
+        {
+        Data.stage = stage_id;
+        LoadScene(1);//这里默认关卡为scene1
         }
 
     }
