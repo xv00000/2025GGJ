@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 6
   studentId: 0
-  score: 4000
+  score: 7000
   sprite: {fileID: 21300000, guid: f6cd7003e96c1444d8bb4ffbb02565c9, type: 3}
   sprite_bubble: {fileID: 21300000, guid: b5a1951d1ee677c47af74f7f48e77ff5, type: 3}
   offect: {x: 0.75, y: 1.75}
