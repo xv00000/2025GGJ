@@ -26,6 +26,6 @@ public class GameDriver : MonoBehaviour
             Skill._1 = !Skill._1;
         
         }
-        Debug.Log((float)Data.dream / (Data.dream + Data.normal));
+        //Debug.Log((float)Data.dream / (Data.dream + Data.normal));
     }
 }
