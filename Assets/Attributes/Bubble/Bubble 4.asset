@@ -17,4 +17,4 @@ MonoBehaviour:
   score: 3000
   sprite: {fileID: 21300000, guid: 2ac0a4354904b6d44ad9243f5bd2263e, type: 3}
   sprite_bubble: {fileID: 21300000, guid: e9fc654dfe9637f449d3afbe47b5b84a, type: 3}
-  offect: {x: 1, y: 1.5}
+  offect: {x: 0.75, y: 1.75}
