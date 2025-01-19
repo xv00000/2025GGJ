@@ -69,6 +69,21 @@ public class ReflectionManager : MonoBehaviour
         Destroy(instance, 2.0f); // 2秒后销毁
 
         }
+    public void Reflect(string reflectText, Vector3 position, Color color,int size)
+        {
+        GameObject instance = Instantiate(reflectTextPrefab, position, Quaternion.identity);
+        TextMeshPro textComponent = instance.GetComponentInChildren<TextMeshPro>();
+
+        if (textComponent != null)
+            {
+            textComponent.text = reflectText;
+            textComponent.color = color;
+            textComponent.fontSize = size;
+            }
+
+        Destroy(instance, 2.0f); // 2秒后销毁
+
+        }
 
     /// <summary>
     /// 在指定位置生成打击特效并触发屏幕抖动

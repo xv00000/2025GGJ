@@ -25,6 +25,7 @@ public class Bubble : MonoBehaviour
 
     public void Init(BubbleScript bubbleScript, Vector2 offset, int studentId)
         {
+        //AudioManager.instance.PlayEffect("冒泡");
         this.studentId = studentId;
         self = gameObject;
         script = bubbleScript;
@@ -48,7 +49,9 @@ public class Bubble : MonoBehaviour
 
         //}
         bubbleSpriteRenderer.sprite = bubbleScript.sprite_bubble;
-        
+        if (Data.students[studentId].GetComponent<Student>()._currentState != StudentState.Idle) {
+            Destroy(gameObject);
+        }
         // 设置气泡对于学生位置的偏移
         transform.position = (Vector2)Data.students[studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
@@ -95,8 +98,8 @@ public class Bubble : MonoBehaviour
         else
             {
             Data.combo = 0;
-            // 普通点击效果
-            AudioManager.instance.PlayEffect("气泡破裂");
+            // ����ʧ����Ч
+            AudioManager.instance.PlayEffect("失败的气泡破裂");
             ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
             ProcessManager.instance.AddScore(score / 2);
             //Debug.Log(score/10);
@@ -127,20 +130,20 @@ public class Bubble : MonoBehaviour
             else
                 {
                 Data.combo = 0;
-                // 普通点击效果
-                AudioManager.instance.PlayEffect("气泡破裂");
+                // ����ʧ����Ч
+                AudioManager.instance.PlayEffect("失败的气泡破裂");
                 ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
                 ProcessManager.instance.AddScore(score / 2);
                 Debug.Log(score / 10);
                 }
-            Cursor.SetCursor(Texture.clickCursor, new Vector2(-0.35f, 0.25f), CursorMode.Auto);
+            Cursor.SetCursor(Texture.clickCursor, new Vector2(100, 150f), CursorMode.Auto);
             Debug.Log("woc2");
             ReflectionManager.Instance.HitEffect(transform.position);//后面的浮点数是震动强度
             Destroy(gameObject);
             Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); }, 2);
-            Tool.instance.DelayTime(() => { Cursor.SetCursor(Texture.normalCursor, new Vector2(-0.35f, 0.25f), CursorMode.Auto); }, 0.2f);
+            Tool.instance.DelayTime(() => { Cursor.SetCursor(Texture.normalCursor, new Vector2(100, 150f), CursorMode.Auto); }, 0.2f);
 
             }
         }
