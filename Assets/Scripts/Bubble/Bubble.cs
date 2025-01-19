@@ -25,6 +25,7 @@ public class Bubble : MonoBehaviour
 
     public void Init(BubbleScript bubbleScript, Vector2 offset, int studentId)
         {
+        //AudioManager.instance.PlayEffect("冒泡");
         this.studentId = studentId;
         self = gameObject;
         script = bubbleScript;
@@ -96,7 +97,7 @@ public class Bubble : MonoBehaviour
             {
             Data.combo = 0;
             // ����ʧ����Ч
-            AudioManager.instance.PlayEffect("气泡破裂");
+            AudioManager.instance.PlayEffect("失败的气泡破裂");
             ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
             // ���÷�������
             ProcessManager.instance.AddScore(score / 2);
@@ -131,7 +132,7 @@ public class Bubble : MonoBehaviour
                 {
                 Data.combo = 0;
                 // ����ʧ����Ч
-                AudioManager.instance.PlayEffect("气泡破裂");
+                AudioManager.instance.PlayEffect("失败的气泡破裂");
                 ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
                 // ���÷�������
                 ProcessManager.instance.AddScore(score / 2);
