@@ -1322,15 +1322,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 9999999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33367433c45a1094b93a3d9bac4e7f6e, type: 2}
-  m_sharedMaterial: {fileID: -995791399440836517, guid: 33367433c45a1094b93a3d9bac4e7f6e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a10414c8232c47489f613f0b129f306, type: 2}
+  m_sharedMaterial: {fileID: 7796719313559417545, guid: 9a10414c8232c47489f613f0b129f306, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281584895
-  m_fontColor: {r: 1, g: 0.8008932, b: 0.19811308, a: 1}
+    rgba: 4286775295
+  m_fontColor: {r: 0.99816775, g: 1, b: 0.5113207, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3706,7 +3706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1283378853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4094,15 +4094,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u4E0B\u4E00\u5173"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 33367433c45a1094b93a3d9bac4e7f6e, type: 2}
-  m_sharedMaterial: {fileID: -995791399440836517, guid: 33367433c45a1094b93a3d9bac4e7f6e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9a10414c8232c47489f613f0b129f306, type: 2}
+  m_sharedMaterial: {fileID: 7796719313559417545, guid: 9a10414c8232c47489f613f0b129f306, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255379
-  m_fontColor: {r: 0.07360923, g: 1, b: 0, a: 1}
+    rgba: 4283760638
+  m_fontColor: {r: 0.99474657, g: 1, b: 0.33018857, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4125,7 +4125,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

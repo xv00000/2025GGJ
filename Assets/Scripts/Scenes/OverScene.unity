@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: 21300000, guid: 75363599e9b176441967c365cc26270f, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: ca7457ddb2e3c214a96a38de92876100, type: 3}
 --- !u!212 &8729911
 SpriteRenderer:
   m_ObjectHideFlags: 0
