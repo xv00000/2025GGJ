@@ -38,37 +38,40 @@ public class DialogueManager : MonoBehaviour
         if (textAsset != null)
         {
             text = textAsset.text;
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(text);
+            startlines = System.Text.Encoding.UTF8.GetString(bytes).Split('\n');
         }
         else
         {
             Debug.LogError("Text file not found in Resources!");
         }
-        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(text);
-        startlines = System.Text.Encoding.UTF8.GetString(bytes).Split('\n');
+        
         TextAsset textAsset1 = Resources.Load<TextAsset>("DiagEnd1" + Data.stage);//这里不要加文件扩展名
         string text1 = "";
         if (textAsset1 != null)
         {
             text1 = textAsset1.text;
+            byte[] bytes1 = System.Text.Encoding.UTF8.GetBytes(text1);
+            endlines = System.Text.Encoding.UTF8.GetString(bytes1).Split('\n');
         }
         else
         {
             Debug.LogError("Text file not found in Resources!");
         }
-        byte[] bytes1 = System.Text.Encoding.UTF8.GetBytes(text1);
-        endlines = System.Text.Encoding.UTF8.GetString(bytes1).Split('\n');
+        
         TextAsset textAsset2 = Resources.Load<TextAsset>("DiagEnd2" + Data.stage);//这里不要加文件扩展名
         string text2 = "";
         if (textAsset2 != null)
         {
             text2 = textAsset2.text;
+            byte[] bytes2 = System.Text.Encoding.UTF8.GetBytes(text2);
+            endlines1 = System.Text.Encoding.UTF8.GetString(bytes2).Split('\n');
         }
         else
         {
             Debug.LogError("Text file not found in Resources!");
         }
-        byte[] bytes2 = System.Text.Encoding.UTF8.GetBytes(text2);
-        endlines1 = System.Text.Encoding.UTF8.GetString(bytes2).Split('\n');
+        
     }
     
     public void BeginStartDialogue() {
