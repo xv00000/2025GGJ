@@ -6,10 +6,10 @@ using UnityEngine;
 public class DateChange : MonoBehaviour
 {
     public TextMeshPro textMeshPro;
-    private int[] date = { 99, 82, 64, 42, 31, 17, 7 };
+    private int[] date = { 99, 82, 64, 42, 33,31, 17, 7 ,2};
     public void ChangeDate(int stage)
     {
-        int dateValue = date[stage];
+        int dateValue = date[stage-1];
 
         // 修改TextMeshPro组件的文本内容
         if (dateValue > 9)

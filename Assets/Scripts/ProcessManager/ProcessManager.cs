@@ -41,6 +41,7 @@ public class ProcessManager : MonoBehaviour
     [SerializeField] SpriteRenderer back;
     [SerializeField] List<Sprite> backGrounds;
     [SerializeField] GameObject PausePanel;
+    [SerializeField] DateChange dateChange;
     //[SerializeField] List<Sprite> BubbleSprites = new List<Sprite>();
     [SerializeField] GameObject BubblePrefab;
     public static ProcessManager instance;
@@ -51,6 +52,8 @@ public class ProcessManager : MonoBehaviour
     public List<GameObject> hand = new List<GameObject>();
     private void Awake()
         {
+        dateChange = GetComponent<DateChange>();
+        dateChange.ChangeDate(Data.stage);
         instance = this;
         Data.students = students;
         Data.studentScripts = studentScripts;
