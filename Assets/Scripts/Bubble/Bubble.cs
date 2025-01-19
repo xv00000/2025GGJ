@@ -49,7 +49,9 @@ public class Bubble : MonoBehaviour
 
         //}
         bubbleSpriteRenderer.sprite = bubbleScript.sprite_bubble;
-        
+        if (Data.students[studentId].GetComponent<Student>()._currentState != StudentState.Idle) {
+            Destroy(gameObject);
+        }
         // 设置气泡对于学生位置的偏移
         transform.position = (Vector2)Data.students[studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
