@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   studentId: 0
-  score: 2
+  score: 2000
   sprite: {fileID: 21300000, guid: 5f3a60c3ca1430c44b1e81213d285c0b, type: 3}
   sprite_bubble: {fileID: 21300000, guid: e9fc654dfe9637f449d3afbe47b5b84a, type: 3}
-  offect: {x: 1.25, y: 1.25}
+  offect: {x: 1, y: 1.5}
