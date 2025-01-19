@@ -14,6 +14,7 @@ public static class Data {
     public static int score = 0;
     public static int normal = 0;
     public static int dream = 0;
+    
     public static List<GameObject> students = new List<GameObject>();
     public static List<StudentScript> studentScripts = new List<StudentScript>();
     public static List<BubbleScript> bubbleScripts = new List<BubbleScript>();
@@ -36,6 +37,8 @@ public class ProcessManager : MonoBehaviour
     //[SerializeField] List<Sprite> BubbleSprites = new List<Sprite>();
     [SerializeField] GameObject BubblePrefab;
     public static ProcessManager instance;
+    public List<GameObject> hand = new List<GameObject>();
+
     private void Awake()
     {
         instance = this;
@@ -44,6 +47,16 @@ public class ProcessManager : MonoBehaviour
         Data.bubbleScripts = bubbleScripts;
         for (int i = 0; i < students.Count; i++) {
             students[i].GetComponent<Student>().Init(studentScripts[UnityEngine.Random.Range(0,studentScripts.Count)]);
+            
+            
+            if (UnityEngine.Random.value < 0.5f) // 50%的概率
+            {
+                GameObject handInstance = Instantiate(hand[i]);
+                handInstance.transform.position = transform.position + new Vector3( students[i].transform.position.x+4.145f-4.01f, students[i].transform.position.y + 2.958f -3f, 0) ; // 设置hand的位置
+                handInstance.transform.parent = transform;
+            }
+            
+
         }
     }
     public void Initialize() { 
