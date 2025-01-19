@@ -618,7 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomGenerate: 0
-  interval: 0.3
+  interval: 0.15
   crazeTime: 0.4
   students:
   - {fileID: 1604478264}

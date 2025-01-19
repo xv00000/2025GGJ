@@ -52,6 +52,7 @@ public class ProcessManager : MonoBehaviour
     public List<GameObject> hand = new List<GameObject>();
     private void Awake()
         {
+        if (Data.stage == 9)randomGenerate = true;
         dateChange = GetComponent<DateChange>();
         dateChange.ChangeDate(Data.stage);
         instance = this;
