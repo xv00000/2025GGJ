@@ -20,8 +20,8 @@ public class MouseTrail : MonoBehaviour
 
     }
 
-    public void DrayMouse()
+    void Update()
     {
-        transform.position = Input.mousePosition;
+        trailObject.transform.position = Input.mousePosition;
     }
 }
