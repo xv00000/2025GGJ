@@ -54,6 +54,7 @@ public class ProcessManager : MonoBehaviour
     private void Awake()
         {
         if (Data.stage == 9)randomGenerate = true;
+        Skill._1 = false;
         dateChange = GetComponent<DateChange>();
         dateChange.ChangeDate(Data.stage);
         instance = this;
