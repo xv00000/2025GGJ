@@ -14,13 +14,13 @@ public class Bubble : MonoBehaviour
     {
     [SerializeField] GameObject effect;
     GameObject self;
-    public int id;        // ���ݵı��
-    public Sprite sprite; // ���ݵ�ͼ��
-    public Sprite bubbleSprite;// ���ݵĵ�ͼ
-    public int score;     // ���ݵķ���
+    public int id;        // 学生编号
+    public Sprite sprite; // 学生图标
+    public Sprite bubbleSprite;// 气泡内图
+    public int score;     // 绩效
     private bool isMaxSize = false;
     int studentId;
-    [SerializeField] SpriteRenderer spriteRenderer;// �Ƿ�ﵽ���ߴ�
+    [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] BubbleScript script;
 
     public void Init(BubbleScript bubbleScript, Vector2 offset, int studentId)
@@ -28,12 +28,12 @@ public class Bubble : MonoBehaviour
         this.studentId = studentId;
         self = gameObject;
         script = bubbleScript;
-        // ����id��Sprite��Score
+
         this.id = bubbleScript.id;
         this.sprite = bubbleScript.sprite;
         this.score = bubbleScript.score;
 
-        // ���ݷ����޸����ݵ�ͼ
+        // 根据生成分数选择不同的气泡框
         SpriteRenderer bubbleSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         //switch (score)
         //{
@@ -48,18 +48,19 @@ public class Bubble : MonoBehaviour
 
         //}
         bubbleSpriteRenderer.sprite = bubbleScript.sprite_bubble;
-        // ��������λ�ã�����ƫ�ƣ�
+        
+        // 设置气泡对于学生位置的偏移
         transform.position = (Vector2)Data.students[studentId].transform.position + offset;
         spriteRenderer.sprite = sprite;
         Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Distract);
 
-        // ��ʼ��С���Ķ���
+        // 播放气泡生成动画
         StartCoroutine(PlayBubbleAnimation());
         }
 
     private IEnumerator PlayBubbleAnimation()
         {
-        float duration = 0.5f; // ��������ʱ��
+        float duration = 0.5f; // 动画持续时间
         float elapsedTime = 0f;
         Vector3 startScale = Vector3.zero;
         Vector3 endScale = Vector3.one * 2.5f;//乘以倍数调整泡泡大小
@@ -85,20 +86,18 @@ public class Bubble : MonoBehaviour
         if (isMaxSize)
             {
             Data.combo += 1;
-            // ���ųɹ���Ч
+            // 精确点击效果
             AudioManager.instance.PlayEffect("气泡破裂");
             ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
-            // ���÷�������
             ProcessManager.instance.AddScore(score);
             //Debug.Log(score);
             }
         else
             {
             Data.combo = 0;
-            // ����ʧ����Ч
+            // 普通点击效果
             AudioManager.instance.PlayEffect("气泡破裂");
             ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
-            // ���÷�������
             ProcessManager.instance.AddScore(score / 2);
             //Debug.Log(score/10);
             }
@@ -108,8 +107,7 @@ public class Bubble : MonoBehaviour
         Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
         //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
         Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); }, 2);
-        // ��������
-
+        
         }
     private void OnMouseOver()
         {
@@ -120,20 +118,18 @@ public class Bubble : MonoBehaviour
             if (isMaxSize)
                 {
                 Data.combo += 1;
-                // ���ųɹ���Ч
+                // 精确点击效果
                 AudioManager.instance.PlayEffect("气泡破裂");
                 ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
-                // ���÷�������
                 ProcessManager.instance.AddScore(score);
                 Debug.Log(score);
                 }
             else
                 {
                 Data.combo = 0;
-                // ����ʧ����Ч
+                // 普通点击效果
                 AudioManager.instance.PlayEffect("气泡破裂");
                 ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
-                // ���÷�������
                 ProcessManager.instance.AddScore(score / 2);
                 Debug.Log(score / 10);
                 }
