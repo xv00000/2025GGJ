@@ -91,7 +91,7 @@ public class Bubble : MonoBehaviour
             Data.combo += 1;
             // 精确点击效果
             AudioManager.instance.PlayEffect("气泡破裂");
-            ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
+            ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.yellow);
             ProcessManager.instance.AddScore(score);
             //Debug.Log(score);
             }
@@ -100,7 +100,7 @@ public class Bubble : MonoBehaviour
             Data.combo = 0;
             // ����ʧ����Ч
             AudioManager.instance.PlayEffect("失败的气泡破裂");
-            ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
+            ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.yellow);
             ProcessManager.instance.AddScore(score / 2);
             //Debug.Log(score/10);
             }
@@ -123,7 +123,7 @@ public class Bubble : MonoBehaviour
                 Data.combo += 1;
                 // 精确点击效果
                 AudioManager.instance.PlayEffect("气泡破裂");
-                ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.green);
+                ReflectionManager.Instance.Reflect((score).ToString(), transform.position, Color.yellow);
                 ProcessManager.instance.AddScore(score);
                 Debug.Log(score);
                 }
@@ -132,7 +132,7 @@ public class Bubble : MonoBehaviour
                 Data.combo = 0;
                 // ����ʧ����Ч
                 AudioManager.instance.PlayEffect("失败的气泡破裂");
-                ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.green);
+                ReflectionManager.Instance.Reflect((score / 2).ToString(), transform.position, Color.yellow);
                 ProcessManager.instance.AddScore(score / 2);
                 Debug.Log(score / 10);
                 }
