@@ -15,8 +15,8 @@ public static class Data
     public static int stage = 1;
     public static int score = 0;
     public static int normal = 0;
-    public static int dream = 0;
-    public static int combo = 0;
+    public static int dream = 1;
+    public static int combo = 1;
     public static List<GameObject> students = new List<GameObject>();
     public static List<StudentScript> studentScripts = new List<StudentScript>();
     public static List<BubbleScript> bubbleScripts = new List<BubbleScript>();
