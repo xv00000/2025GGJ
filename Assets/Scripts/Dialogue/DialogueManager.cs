@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.UIElements;
 
@@ -199,7 +200,17 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                end1 = false; diagpanel.SetActive(false); score.text="绩效："+Data.score.ToString(); endpanel.SetActive(true);
+                if (Data.stage != 8)
+                {
+                    end1 = false; diagpanel.SetActive(false); score.text = "绩效：" + Data.score.ToString(); endpanel.SetActive(true);
+                }
+                else {
+                    if ((float)Data.dream / (Data.dream + Data.normal) >= 0.3) Data.ending = 1;
+                    else Data.ending = 2;
+                    SceneManager.LoadScene(2);
+
+
+                }
             }
         }
         if (end2 && Input.GetMouseButtonDown(0))
@@ -232,7 +243,19 @@ public class DialogueManager : MonoBehaviour
                 }
                 endcnt1++;
             }
-            else {end2 = false; diagpanel.SetActive(false); score.text = "绩效：" + Data.score.ToString(); endpanel.SetActive(true);
+            else {
+                if (Data.stage != 8)
+                {
+                    end2 = false; diagpanel.SetActive(false); score.text = "绩效：" + Data.score.ToString(); endpanel.SetActive(true);
+                }
+                else
+                {
+                    if ((float)Data.dream / (Data.dream + Data.normal) >= 0.3) Data.ending = 1;
+                    else Data.ending = 2;
+                    SceneManager.LoadScene(2);
+
+
+                }
             }
     }
     }
