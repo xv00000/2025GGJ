@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Student 7
   m_EditorClassIdentifier: 
   id: 7
-  IdleSprite: {fileID: 21300000, guid: a249a15c23c2e69489e27d77eae07002, type: 3}
-  AmazeSprite: {fileID: 21300000, guid: ee15a3b6b41d0dc44a40e14197129780, type: 3}
-  DistractSprite: {fileID: 21300000, guid: 9785799802affd048b078edff9993b13, type: 3}
+  IdleSprite: {fileID: 21300000, guid: d342d4a29080f31468040bfb357b76aa, type: 3}
+  AmazeSprite: {fileID: 21300000, guid: 275884dbc0cae684582e0a7253aa3477, type: 3}
+  DistractSprite: {fileID: 21300000, guid: 48b67c5cd73de9e4c99216c236c5e8e6, type: 3}
