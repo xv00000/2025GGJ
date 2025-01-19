@@ -260,4 +260,9 @@ public class ProcessManager : MonoBehaviour
 
         Application.Quit();
         }
+    public void ChangeSence(int id) {
+        SceneManager.LoadScene(id);
+    
     }
+        }
+    
