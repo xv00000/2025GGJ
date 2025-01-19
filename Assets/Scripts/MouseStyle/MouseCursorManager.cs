@@ -10,9 +10,12 @@ public class MouseCursorManager : MonoBehaviour
 
     void Awake()
     {
+
         // 设置初始鼠标样式
         if (normalCursor != null)
         {
+            Texture.clickCursor = clickCursor;
+            Texture.normalCursor = normalCursor;
             Cursor.SetCursor(normalCursor, hotspot, CursorMode.Auto);
         }
         else

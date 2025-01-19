@@ -136,14 +136,14 @@ public class Bubble : MonoBehaviour
                 ProcessManager.instance.AddScore(score / 2);
                 Debug.Log(score / 10);
                 }
-            Cursor.SetCursor(Texture.clickCursor, new Vector2(-0.35f, 0.25f), CursorMode.Auto);
+            Cursor.SetCursor(Texture.clickCursor, new Vector2(100, 150f), CursorMode.Auto);
             Debug.Log("woc2");
             ReflectionManager.Instance.HitEffect(transform.position);//后面的浮点数是震动强度
             Destroy(gameObject);
             Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             //ProcessManager.instance.students[script.studentId].GetComponent<Student>().ChangeState(StudentState.Amaze);
             Tool.instance.DelayTime(() => { Data.students[studentId].GetComponent<Student>().ChangeState(StudentState.Idle); }, 2);
-            Tool.instance.DelayTime(() => { Cursor.SetCursor(Texture.normalCursor, new Vector2(-0.35f, 0.25f), CursorMode.Auto); }, 0.2f);
+            Tool.instance.DelayTime(() => { Cursor.SetCursor(Texture.normalCursor, new Vector2(100, 150f), CursorMode.Auto); }, 0.2f);
 
             }
         }
