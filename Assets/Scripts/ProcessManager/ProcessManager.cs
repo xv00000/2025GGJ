@@ -48,7 +48,7 @@ public class ProcessManager : MonoBehaviour
     private float maxScale = 1.5f; // 最大放大倍数
     private float rotationAngle = 3f; // 最大右旋角度
     private float animationDuration = 0.13f; // 动画持续时间
-
+    public List<GameObject> hand = new List<GameObject>();
     private void Awake()
         {
         instance = this;
@@ -58,7 +58,13 @@ public class ProcessManager : MonoBehaviour
         for (int i = 0; i < students.Count; i++)
             {
             students[i].GetComponent<Student>().Init(studentScripts[UnityEngine.Random.Range(0, studentScripts.Count)]);
+            if (UnityEngine.Random.value < 0.5f) // 50%的概率
+            {
+                GameObject handInstance = Instantiate(hand[i]);
+                handInstance.transform.position = transform.position + new Vector3(students[i].transform.position.x + 4.145f - 4.01f, students[i].transform.position.y + 2.958f - 3f, 0); // 设置hand的位置
+                handInstance.transform.parent = transform;
             }
+        }
         }
     public void Initialize()
         {
