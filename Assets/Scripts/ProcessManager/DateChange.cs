@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DateChange : MonoBehaviour
 {
-    public TextMeshProUGUI textMeshPro;
+    public TextMeshPro textMeshPro;
     private int[] date = { 99, 82, 64, 42, 31, 17, 7 };
     public void ChangeDate(int stage)
     {
