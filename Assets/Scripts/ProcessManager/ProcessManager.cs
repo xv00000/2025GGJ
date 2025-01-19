@@ -52,6 +52,7 @@ public class ProcessManager : MonoBehaviour
     public List<GameObject> hand = new List<GameObject>();
     private void Awake()
         {
+        if (Data.stage == 9)randomGenerate = true;
         dateChange = GetComponent<DateChange>();
         dateChange.ChangeDate(Data.stage);
         instance = this;
@@ -240,7 +241,7 @@ public class ProcessManager : MonoBehaviour
             float nextTime = (line[9] - 48) * 100 + (line[10] - 48) * 10 + (line[11] - 48) * 1f + (line[12] - 48) * 0.1f + (line[13] - 48) * 0.01f + (line[14] - 48) * 0.0011f;//(line[9] - 48) * 10 + line[10] - 48 + (line[11] - 48) * 0.1f;
             Debug.Log(id + " " + studentId + " " + type + " " + nextTime);
             if ((nextTime < crazeTime || (interval < crazeTime && randomGenerate)) && !craze) { ReflectionManager.Instance.Reflect("进入狂暴模式！！！", Vector3.zero, Color.red, 80);craze = true;Skill._1 = true; }
-            else if ((nextTime >= crazeTime && (interval >= crazeTime && randomGenerate)) && craze) { craze = false; Skill._1 = false; }
+            else if ((nextTime >= crazeTime || (interval >= crazeTime && randomGenerate)) && craze) { craze = false; Skill._1 = false; }
             switch (type)
                 {
                 case "01": GenerateBubble(FindBubble(id), studentId); break;
