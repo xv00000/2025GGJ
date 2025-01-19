@@ -100,6 +100,7 @@ public class ProcessManager : MonoBehaviour
         {
         if (count == length)
             {
+            AudioManager.instance.PlayEffect("ÏÂ¿ÎÁå");
             Tool.instance.DelayTime(() =>
         {
             if (!a)
@@ -107,7 +108,7 @@ public class ProcessManager : MonoBehaviour
                 a = true;
                 if (Data.stage != 8)
                     {
-                    if (Data.score >= 30 + 45 * (Data.stage - 1)) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
+                    if (Data.score >= 30000 + 45000 * (Data.stage - 1)) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
                     else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
                     }
                 else
