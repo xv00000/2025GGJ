@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16eff094d3d81c42a319a7458fa4de9, type: 3}
   m_Name: Student 6
   m_EditorClassIdentifier: 
-  id: 5
-  IdleSprite: {fileID: 21300000, guid: a249a15c23c2e69489e27d77eae07002, type: 3}
-  AmazeSprite: {fileID: 21300000, guid: ee15a3b6b41d0dc44a40e14197129780, type: 3}
-  DistractSprite: {fileID: 21300000, guid: 9785799802affd048b078edff9993b13, type: 3}
+  id: 6
+  IdleSprite: {fileID: 21300000, guid: ecf86b0360f5e7542be0ac9c676939a3, type: 3}
+  AmazeSprite: {fileID: 21300000, guid: 64281f9e878b55146a69456923d9481c, type: 3}
+  DistractSprite: {fileID: 21300000, guid: 4c968ec54f0e8544487291091d74f7bf, type: 3}
