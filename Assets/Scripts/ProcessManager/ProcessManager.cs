@@ -111,31 +111,32 @@ public class ProcessManager : MonoBehaviour
         bubble.Init(bubbleScript, bubbleScript.offect, studentId);
         //Data.students[bubbleScript.id];
         }
-    public float GetProcess()
-        {
+    public float GetProcess(){
         if (count == length)
-            {
-            AudioManager.instance.PlayEffect("ÏÂ¿ÎÁå");
-            Tool.instance.DelayTime(() =>
         {
             if (!a)
-                {
+            {
                 a = true;
-                if (Data.stage != 100)
-                    {
-                    if (Data.score >= 30000 + 45000 * (Data.stage - 1)) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
-                    else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
-                    }
-                //else
-                //    {
-                //    if ((float)Data.dream / (Data.dream + Data.normal) >= 0.3) Data.ending = 1;
-                //    else Data.ending = 2;
-                //    SceneManager.LoadScene(2);
-                //    }
-                }
+                AudioManager.instance.PlayEffect("ÏÂ¿ÎÁå");
+                Tool.instance.DelayTime(() =>
+                {
 
-        }, 3);
+                    if (Data.stage != 100)
+                    {
+                        if (Data.score >= 30000 + 45000 * (Data.stage - 1)) { DialogueManager.Instance.BeginEnd1Dialogue(); Time.timeScale = 0; }
+                        else DialogueManager.Instance.BeginEnd2Dialogue(); Time.timeScale = 0;
+                    }
+                    //else
+                    //    {
+                    //    if ((float)Data.dream / (Data.dream + Data.normal) >= 0.3) Data.ending = 1;
+                    //    else Data.ending = 2;
+                    //    SceneManager.LoadScene(2);
+                    //    }
+
+
+                }, 3);
             }
+        }
         //Debug.Log(count+" "+length);
         return count / length;
         }
