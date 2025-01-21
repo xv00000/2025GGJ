@@ -98,7 +98,7 @@ public class ProcessManager : MonoBehaviour
         processBarGam.SetActive(true);
         AudioManager.instance.PlayBGM("关卡" + Data.stage);
         crazeimage.SetActive(false);
-        if ((interval < crazeTime) && !craze && randomGenerate) { ReflectionManager.Instance.Reflect("进入狂暴模式！！！", Vector3.zero, Color.red, 80); craze = true; Skill._1 = true; crazeimage.SetActive(true); }
+        //if ((interval < crazeTime) && !craze && randomGenerate) { ReflectionManager.Instance.Reflect("进入狂暴模式！！！", Vector3.zero, Color.red, 80); craze = true; Skill._1 = true; crazeimage.SetActive(true); }
 
     }
     public void EndGame()
@@ -172,11 +172,13 @@ public class ProcessManager : MonoBehaviour
         {
         Data.score += score;
         scoreText.text =  "绩效：" + Data.score;//Data.stage +
-        if (Data.combo >= 1)
+        if (Data.combo >= 5)
             {
             ReflectionManager.Instance.Reflect("连击X" + Data.combo, new Vector3(-8, 3, 0), Color.red);
 
             }
+        if ((Data.combo >= 10) && !craze) { ReflectionManager.Instance.Reflect("进入狂暴模式！！！", Vector3.zero, Color.red, 80); craze = true; Skill._1 = true; crazeimage.SetActive(true); }//(nextTime < crazeTime || (interval < crazeTime && randomGenerate) || 
+        else if (Data.combo < 10 && craze) { craze = false; Skill._1 = false; crazeimage.SetActive(false); }//(nextTime >= crazeTime || (interval >= crazeTime && randomGenerate)) 
         // 如果已经有动画进行中，先停止它
         if (scoreAnimationCoroutine != null)
             {
@@ -244,8 +246,7 @@ public class ProcessManager : MonoBehaviour
             string type = line[6].ToString() + line[7].ToString();
             float nextTime = (line[9] - 48) * 100 + (line[10] - 48) * 10 + (line[11] - 48) * 1f + (line[12] - 48) * 0.1f + (line[13] - 48) * 0.01f + (line[14] - 48) * 0.0011f;//(line[9] - 48) * 10 + line[10] - 48 + (line[11] - 48) * 0.1f;
             Debug.Log(id + " " + studentId + " " + type + " " + nextTime);
-            if ((nextTime < crazeTime || (interval < crazeTime && randomGenerate)) && !craze) { ReflectionManager.Instance.Reflect("进入狂暴模式！！！", Vector3.zero, Color.red, 80);craze = true;Skill._1 = true; crazeimage.SetActive(true); }
-            else if ((nextTime >= crazeTime || (interval >= crazeTime && randomGenerate)) && craze) { craze = false; Skill._1 = false; crazeimage.SetActive(false); }
+            
             switch (type)
                 {
                 case "01": GenerateBubble(FindBubble(id), studentId); break;
